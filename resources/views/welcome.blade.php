@@ -351,7 +351,7 @@
 
       <!-- Desktop CTAs -->
       <div class="hidden md:flex items-center gap-3">
-        <a href="tel:+18015550000" class="btn-outline text-sm px-5 py-2.5 rounded-lg flex items-center gap-2">
+        <a href="tel:+17754427070‬" class="btn-outline text-sm px-5 py-2.5 rounded-lg flex items-center gap-2">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
@@ -378,7 +378,7 @@
       <a href="#how-it-works" class="text-silver-200 font-body hover:text-cyan-glow transition-colors py-1">How It Works</a>
       <a href="#contact" class="text-silver-200 font-body hover:text-cyan-glow transition-colors py-1">Contact</a>
       <div class="flex flex-col gap-3 pt-2">
-        <a href="tel:+18015550000" class="btn-outline text-sm px-5 py-3 rounded-lg text-center flex items-center justify-center gap-2">
+        <a href="tel:+17754427070‬" class="btn-outline text-sm px-5 py-3 rounded-lg text-center flex items-center justify-center gap-2">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
@@ -404,7 +404,7 @@
         <div class="inline-flex items-center gap-4 bg-panel border border-cyan-glow/15 rounded-full px-5 py-2.5">
           <span class="ping-dot font-mono text-xs text-cyan-glow tracking-widest uppercase">Live Demo Available</span>
           <span class="w-px h-4 bg-silver-400/30"></span>
-          <a href="tel:+18015550000" class="flex items-center gap-2 text-sm font-body text-silver-200 hover:text-cyan-glow transition-colors">
+          <a href="tel:+17754427070‬" class="flex items-center gap-2 text-sm font-body text-silver-200 hover:text-cyan-glow transition-colors">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
             </svg>
@@ -435,7 +435,7 @@
               </svg>
               Schedule a Strategy Call
             </a>
-            <a href="tel:+18015550000"
+            <a href="tel:+17754427070‬"
                class="btn-outline px-8 py-4 rounded-xl text-base text-center flex items-center justify-center gap-3">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
@@ -1005,7 +1005,7 @@
               </svg>
               Schedule a Strategy Call
             </a>
-            <a href="tel:+18015550000"
+            <a href="tel:+17754427070‬"
                class="btn-outline px-10 py-4 rounded-xl text-base flex items-center gap-3">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
@@ -1048,7 +1048,7 @@
               </div>
               <div>
                 <div class="font-body text-xs text-silver-400 mb-0.5">Phone / Live Demo</div>
-                <a href="tel:+18015550000" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">+1 (801) 555-0000</a>
+                <a href="tel:+17754427070‬" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">+1 (801) 555-0000</a>
               </div>
             </div>
 
@@ -1133,7 +1133,7 @@
               </svg>
             </div>
             <h3 class="font-display font-700 text-silver-100 text-xl mb-2">Message Received!</h3>
-            <p class="font-body text-silver-400 text-sm">We'll reach out within one business day. In the meantime, feel free to <a href="tel:+18015550000" class="text-cyan-glow hover:underline">call us</a> for an instant demo.</p>
+            <p class="font-body text-silver-400 text-sm">We'll reach out within one business day. In the meantime, feel free to <a href="tel:+17754427070‬" class="text-cyan-glow hover:underline">call us</a> for an instant demo.</p>
           </div>
         </div>
 
