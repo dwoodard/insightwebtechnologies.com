@@ -7,6 +7,21 @@
   <meta name="description" content="AI-powered receptionists and automation systems that help businesses scale and improve efficiency. Book a demo today." />
   <meta name="keywords" content="AI receptionist, business automation, AI chatbot, web design, business integration" />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Insight Web Technologies — AI Receptionist & Automation Systems" />
+  <meta property="og:description" content="AI-powered receptionists and automation systems that help businesses scale and improve efficiency. Book a demo today." />
+  <meta property="og:site_name" content="Insight Web Technologies" />
+  <meta property="og:url" content="{{ request()->fullUrl() }}" />
+  <meta property="og:image" content="{{ asset('build/assets/og-image.png') }}" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Insight Web Technologies — AI Receptionist & Automation Systems" />
+  <meta name="twitter:description" content="AI-powered receptionists and automation systems that help businesses scale and improve efficiency. Book a demo today." />
+  <meta name="twitter:image" content="{{ asset('build/assets/og-image.png') }}" />
+
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -357,7 +372,7 @@
           </svg>
           Quick Call Demo
         </a>
-        <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener" class="btn-primary text-sm px-5 py-2.5 rounded-lg">Book a Demo</a>
+        <a href="#" target="_blank" rel="noopener" class="btn-primary text-sm px-5 py-2.5 rounded-lg">Book a Demo</a>
       </div>
 
       <!-- Mobile hamburger -->
@@ -384,7 +399,7 @@
           </svg>
           Quick Call Demo
         </a>
-        <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener" class="btn-primary text-sm px-5 py-3 rounded-lg text-center">Book a Demo</a>
+        <a href="#" target="_blank" rel="noopener" class="btn-primary text-sm px-5 py-3 rounded-lg text-center">Book a Demo</a>
       </div>
     </div>
   </nav>
@@ -428,7 +443,7 @@
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4 reveal" style="transition-delay:0.25s">
-            <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener"
+            <a href="#" target="_blank" rel="noopener"
                class="btn-primary px-8 py-4 rounded-xl text-base text-center flex items-center justify-center gap-3">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -745,7 +760,7 @@
             <li>Monthly performance report</li>
           </ul>
 
-          <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener"
+          <a href="#" target="_blank" rel="noopener"
              class="btn-outline w-full py-3.5 rounded-xl text-sm text-center block hover:btn-primary transition-all">
             Get Started
           </a>
@@ -777,7 +792,7 @@
             <li>Bi-weekly check-in calls</li>
           </ul>
 
-          <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener"
+          <a href="#" target="_blank" rel="noopener"
              class="btn-primary w-full py-3.5 rounded-xl text-sm text-center block">
             Get Started
           </a>
@@ -806,7 +821,7 @@
             <li>First access to new features</li>
           </ul>
 
-          <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener"
+          <a href="#" target="_blank" rel="noopener"
              class="btn-outline w-full py-3.5 rounded-xl text-sm text-center block">
             Get Started
           </a>
@@ -816,7 +831,7 @@
 
       <!-- Bottom note -->
       <p class="text-center font-body text-silver-400 text-sm mt-8 reveal" style="transition-delay:0.2s">
-        Not sure which plan fits? <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener" class="text-cyan-glow hover:underline">Book a free 20-minute strategy call</a> and we'll figure it out together.
+        Not sure which plan fits? <a href="#" target="_blank" rel="noopener" class="text-cyan-glow hover:underline">Book a free 20-minute strategy call</a> and we'll figure it out together.
       </p>
 
     </div>
@@ -998,7 +1013,7 @@
             Book a free strategy call and we'll show you exactly how Insight AI can be running in your business within 48 hours.
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener"
+            <a href="#" target="_blank" rel="noopener"
                class="btn-primary px-10 py-4 rounded-xl text-base flex items-center gap-3">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -1072,7 +1087,7 @@
               </div>
               <div>
                 <div class="font-body text-xs text-silver-400 mb-0.5">Schedule</div>
-                <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">Book a free strategy call →</a>
+                <a href="#" target="_blank" rel="noopener" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">Book a free strategy call →</a>
               </div>
             </div>
           </div>
@@ -1164,7 +1179,7 @@
             AI receptionists and automation systems for businesses that want to scale intelligently and never miss a lead.
           </p>
           <div class="flex items-center gap-3">
-            <a href="https://app.gohighlevel.com/" target="_blank" rel="noopener"
+            <a href="#" target="_blank" rel="noopener"
                class="w-9 h-9 rounded-lg bg-panel border border-cyan-glow/15 flex items-center justify-center text-silver-400 hover:text-cyan-glow hover:border-cyan-glow/40 transition-all">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -1202,7 +1217,7 @@
             <li><a href="#how-it-works" class="hover:text-silver-100 transition-colors">How It Works</a></li>
             <li><a href="#packages" class="hover:text-silver-100 transition-colors">Pricing</a></li>
             <li><a href="#contact" class="hover:text-silver-100 transition-colors">Contact</a></li>
-            <li><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener" class="hover:text-silver-100 transition-colors">Book a Call</a></li>
+            <li><a href="#" target="_blank" rel="noopener" class="hover:text-silver-100 transition-colors">Book a Call</a></li>
           </ul>
         </div>
 
