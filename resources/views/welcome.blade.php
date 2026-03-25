@@ -1,27 +1,42 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Insight Web Technologies — AI Receptionist & Automation Systems</title>
-  <meta name="description" content="AI-powered receptionists and automation systems that help businesses scale and improve efficiency. Book a demo today." />
-  <meta name="keywords" content="AI receptionist, business automation, AI chatbot, web design, business integration" />
+  <title>Insight Web Technologies — AI Receptionist, Business Automations & AI Solutions</title>
+  <meta name="description" content="Insight Web Technologies delivers business AI solutions including AI receptionists, business automations, and intelligent web systems that help companies capture more leads and scale efficiently." />
+  <meta name="keywords" content="business AI solutions, AI receptionist, business automations, AI chatbot, automated lead capture, voice AI, CRM automation, web design, AI consulting" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ request()->url() }}" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Insight Web Technologies — AI Receptionist & Automation Systems" />
-  <meta property="og:description" content="AI-powered receptionists and automation systems that help businesses scale and improve efficiency. Book a demo today." />
+  <meta property="og:title" content="Insight Web Technologies — AI Receptionist & Business Automation Systems" />
+  <meta property="og:description" content="Business AI solutions that never sleep. AI receptionists, business automations, and intelligent workflows built for growth-focused companies." />
   <meta property="og:site_name" content="Insight Web Technologies" />
   <meta property="og:url" content="{{ request()->fullUrl() }}" />
   <meta property="og:image" content="{{ asset('build/assets/og-image.png') }}" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Insight Web Technologies — AI Receptionist & Automation Systems" />
-  <meta name="twitter:description" content="AI-powered receptionists and automation systems that help businesses scale and improve efficiency. Book a demo today." />
+  <meta name="twitter:title" content="Insight Web Technologies — AI Receptionist & Business Automation Systems" />
+  <meta name="twitter:description" content="Business AI solutions that never sleep. AI receptionists, business automations, and intelligent workflows built for growth-focused companies." />
   <meta name="twitter:image" content="{{ asset('build/assets/og-image.png') }}" />
 
+  <!-- Structured Data -->
+  @verbatim
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Insight Web Technologies",
+    "description": "Business AI solutions including AI receptionists, business automations, and intelligent web systems.",
+    "telephone": "+17754427070",
+    "serviceType": ["AI Receptionist", "Business Automation", "Web Design", "AI Consulting"]
+  }
+  </script>
+  @endverbatim
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -36,13 +51,14 @@
       theme: {
         extend: {
           fontFamily: {
-            display: ['sans-serif'],
+            display: ['Syne', 'sans-serif'],
             mono: ['DM Mono', 'monospace'],
             body: ['Outfit', 'sans-serif'],
           },
           colors: {
             ink: '#060A14',
             panel: '#0C1220',
+            panel2: '#0F1729',
             edge: '#111827',
             cyan: {
               glow: '#00E5FF',
@@ -68,7 +84,6 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -90,6 +105,21 @@
       background-size: 60px 60px;
       pointer-events: none;
       z-index: 0;
+    }
+
+    /* ── Section banding ── */
+    .section-band {
+      background: rgba(12,18,32,0.65);
+      border-top: 1px solid rgba(0,229,255,0.07);
+      border-bottom: 1px solid rgba(0,229,255,0.07);
+    }
+    .section-band-dark {
+      background: rgba(6,10,20,0.9);
+    }
+    .section-band-mid {
+      background: rgba(15,23,41,0.8);
+      border-top: 1px solid rgba(0,229,255,0.07);
+      border-bottom: 1px solid rgba(0,229,255,0.07);
     }
 
     /* ── Animated radial blob ── */
@@ -136,13 +166,6 @@
       background: rgba(6,10,20,0.85);
       backdrop-filter: blur(20px);
       box-shadow: 0 1px 0 rgba(0,229,255,0.1);
-    }
-
-    /* ── Cyan line accent ── */
-    .line-accent {
-      display: inline-block;
-      height: 2px;
-      background: linear-gradient(90deg, #00E5FF, transparent);
     }
 
     /* ── Glowing border cards ── */
@@ -318,6 +341,70 @@
       75%, 100% { transform: scale(2.5); opacity: 0; }
     }
 
+    /* ── Comparison table ── */
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    .compare-table th {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      padding: 14px 20px;
+      text-align: center;
+      background: rgba(12,18,32,0.9);
+      border-bottom: 1px solid rgba(0,229,255,0.15);
+    }
+    .compare-table th:first-child { text-align: left; border-radius: 12px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 12px 0 0; }
+    .compare-table td {
+      padding: 13px 20px;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.875rem;
+      color: #8E9BB0;
+      border-bottom: 1px solid rgba(0,229,255,0.06);
+      transition: background 0.2s;
+    }
+    .compare-table td:first-child {
+      text-align: left;
+      color: #C8D4E8;
+      font-size: 0.9rem;
+    }
+    .compare-table tbody tr:hover td { background: rgba(0,229,255,0.025); }
+    .compare-table tbody tr:last-child td:first-child { border-radius: 0 0 0 12px; }
+    .compare-table tbody tr:last-child td:last-child { border-radius: 0 0 12px 0; }
+    .compare-table .col-growth {
+      background: rgba(0,229,255,0.04);
+      border-left: 1px solid rgba(0,229,255,0.12);
+      border-right: 1px solid rgba(0,229,255,0.12);
+    }
+    .compare-table .col-growth-head {
+      background: rgba(0,229,255,0.08);
+      border-left: 1px solid rgba(0,229,255,0.2);
+      border-right: 1px solid rgba(0,229,255,0.2);
+    }
+    .check-icon { color: #00E5FF; font-size: 1rem; }
+    .dash-icon { color: rgba(86,99,122,0.5); font-size: 0.75rem; }
+    .compare-price-row td {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #F0F4FF;
+      background: rgba(12,18,32,0.95);
+      border-top: 1px solid rgba(0,229,255,0.12);
+      border-bottom: none;
+    }
+    .compare-price-row td.col-growth {
+      color: #00E5FF;
+    }
+    .compare-table-wrap {
+      background: rgba(12,18,32,0.6);
+      border: 1px solid rgba(0,229,255,0.12);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
     /* Mobile nav */
     #mobile-menu { display: none; }
     #mobile-menu.open { display: flex; }
@@ -367,7 +454,7 @@
 
       <!-- Desktop CTAs -->
       <div class="hidden md:flex items-center gap-3">
-        <a href="tel:+17754427070‬" class="btn-outline text-sm px-5 py-2.5 rounded-lg flex items-center gap-2">
+        <a href="tel:+17754427070" class="btn-outline text-sm px-5 py-2.5 rounded-lg flex items-center gap-2">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
@@ -394,7 +481,7 @@
       <a href="#how-it-works" class="text-silver-200 font-body hover:text-cyan-glow transition-colors py-1">How It Works</a>
       <a href="#contact" class="text-silver-200 font-body hover:text-cyan-glow transition-colors py-1">Contact</a>
       <div class="flex flex-col gap-3 pt-2">
-        <a href="tel:+17754427070‬" class="btn-outline text-sm px-5 py-3 rounded-lg text-center flex items-center justify-center gap-2">
+        <a href="tel:+17754427070" class="btn-outline text-sm px-5 py-3 rounded-lg text-center flex items-center justify-center gap-2">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
           </svg>
@@ -420,7 +507,7 @@
         <div class="inline-flex items-center gap-4 bg-panel border border-cyan-glow/15 rounded-full px-5 py-2.5">
           <span class="ping-dot font-mono text-xs text-cyan-glow tracking-widest uppercase">Live Demo Available</span>
           <span class="w-px h-4 bg-silver-400/30"></span>
-          <a href="tel:+17754427070‬" class="flex items-center gap-2 text-sm font-body text-silver-200 hover:text-cyan-glow transition-colors">
+          <a href="tel:+17754427070" class="flex items-center gap-2 text-sm font-body text-silver-200 hover:text-cyan-glow transition-colors">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
             </svg>
@@ -433,14 +520,14 @@
 
         <!-- Left: Headline & CTAs -->
         <div>
-          <div class="tag mb-6 reveal" style="transition-delay:0.1s">AI Receptionist & Automation</div>
+          <div class="tag mb-6 reveal" style="transition-delay:0.1s">Business AI Solutions & Automations</div>
 
           <h1 class="font-display font-800 text-5xl lg:text-6xl xl:text-7xl leading-[1.05] mb-6 reveal" style="transition-delay:0.15s">
             <span class="headline-gradient">Your Business,<br/>Running on<br/>Intelligence.</span>
           </h1>
 
           <p class="font-body text-silver-300 text-lg leading-relaxed max-w-lg mb-10 reveal" style="transition-delay:0.2s">
-            AI-powered receptionists, automated workflows, and modern web systems — built for businesses that refuse to be left behind.
+            AI receptionists, business automations, and intelligent web systems — purpose-built for companies that want to capture more leads and operate smarter.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4 reveal" style="transition-delay:0.25s">
@@ -451,7 +538,7 @@
               </svg>
               Schedule a Strategy Call
             </a>
-            <a href="tel:+17754427070‬"
+            <a href="tel:+17754427070"
                class="btn-outline px-8 py-4 rounded-xl text-base text-center flex items-center justify-center gap-3">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
@@ -473,7 +560,7 @@
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00E5FF" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
-              Setup in 48 hours
+              Fast, streamlined setup
             </div>
             <div class="w-px h-4 bg-silver-400/20 hidden sm:block"></div>
             <div class="flex items-center gap-2 text-silver-400 text-sm font-body">
@@ -571,13 +658,13 @@
         <span class="text-cyan-glow">✦</span><span>SMS Chatbot</span>
         <span class="text-cyan-glow">✦</span><span>Voice AI</span>
         <span class="text-cyan-glow">✦</span><span>CRM Integration</span>
-        <span class="text-cyan-glow">✦</span><span>Custom Automations</span>
+        <span class="text-cyan-glow">✦</span><span>Business Automations</span>
         <span class="text-cyan-glow">✦</span><span>Web Design</span>
         <span class="text-cyan-glow">✦</span><span>Brand Identity</span>
         <span class="text-cyan-glow">✦</span><span>AI Consulting</span>
         <span class="text-cyan-glow">✦</span><span>Priority Support</span>
         <span class="text-cyan-glow">✦</span><span>Multi-Location</span>
-        <span class="text-cyan-glow">✦</span><span>Setup in 48 Hours</span>
+        <span class="text-cyan-glow">✦</span><span>AI Solutions</span>
       </div>
       <!-- Duplicate for seamless loop -->
       <div class="flex items-center gap-10 px-10 font-mono text-xs text-silver-400 tracking-widest uppercase" aria-hidden="true">
@@ -586,22 +673,22 @@
         <span class="text-cyan-glow">✦</span><span>SMS Chatbot</span>
         <span class="text-cyan-glow">✦</span><span>Voice AI</span>
         <span class="text-cyan-glow">✦</span><span>CRM Integration</span>
-        <span class="text-cyan-glow">✦</span><span>Custom Automations</span>
+        <span class="text-cyan-glow">✦</span><span>Business Automations</span>
         <span class="text-cyan-glow">✦</span><span>Web Design</span>
         <span class="text-cyan-glow">✦</span><span>Brand Identity</span>
         <span class="text-cyan-glow">✦</span><span>AI Consulting</span>
         <span class="text-cyan-glow">✦</span><span>Priority Support</span>
         <span class="text-cyan-glow">✦</span><span>Multi-Location</span>
-        <span class="text-cyan-glow">✦</span><span>Setup in 48 Hours</span>
+        <span class="text-cyan-glow">✦</span><span>AI Solutions</span>
       </div>
     </div>
   </div>
 
 
   <!-- ══════════════════════════════════════════════
-       PROBLEM / VALUE PROP
+       PROBLEM / VALUE PROP  (banded section)
   ══════════════════════════════════════════════ -->
-  <section class="relative z-10 py-28 px-6 lg:px-12">
+  <section class="relative z-10 py-28 px-6 lg:px-12 section-band">
     <div class="max-w-7xl mx-auto">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div class="reveal">
@@ -610,15 +697,14 @@
             Your business loses leads<br/><span class="text-cyan-glow">every time it's closed.</span>
           </h2>
           <p class="font-body text-silver-300 text-lg leading-relaxed mb-6">
-            Missed calls, slow follow-ups, and manual scheduling are silently costing you customers. Your competitors who adopt AI aren't just faster — they never sleep.
+            Missed calls, slow follow-ups, and manual scheduling are silently costing you customers. Businesses that deploy AI solutions aren't just faster — they never sleep.
           </p>
           <p class="font-body text-silver-300 leading-relaxed">
-            Insight Web Technologies builds intelligent systems that capture, qualify, and convert your leads around the clock — so you can focus on actually running your business.
+            Insight Web Technologies builds intelligent systems that capture, qualify, and convert your leads around the clock — so you can focus on running your business.
           </p>
         </div>
 
         <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay:0.15s">
-          <!-- Stat cards -->
           <div class="card-glow rounded-2xl p-6">
             <div class="font-display font-800 text-4xl text-cyan-glow mb-2">78%</div>
             <div class="font-body text-silver-300 text-sm">of customers buy from the <strong class="text-silver-100">first business to respond</strong></div>
@@ -632,8 +718,8 @@
             <div class="font-body text-silver-300 text-sm">of calls come <strong class="text-silver-100">outside business hours</strong> — unanswered</div>
           </div>
           <div class="card-glow rounded-2xl p-6 mt-8">
-            <div class="font-display font-800 text-4xl text-cyan-glow mb-2">48h</div>
-            <div class="font-body text-silver-300 text-sm">average setup time to <strong class="text-silver-100">go fully live</strong> with our systems</div>
+            <div class="font-display font-800 text-4xl text-cyan-glow mb-2">24/7</div>
+            <div class="font-body text-silver-300 text-sm">AI coverage means <strong class="text-silver-100">zero missed opportunities</strong></div>
           </div>
         </div>
       </div>
@@ -641,11 +727,8 @@
   </section>
 
 
-  <div class="section-divider mx-12 lg:mx-24"></div>
-
-
   <!-- ══════════════════════════════════════════════
-       SERVICES
+       SERVICES  (standard dark)
   ══════════════════════════════════════════════ -->
   <section id="services" class="relative z-10 py-28 px-6 lg:px-12">
     <div class="max-w-7xl mx-auto">
@@ -653,7 +736,7 @@
       <div class="text-center max-w-2xl mx-auto mb-20 reveal">
         <div class="tag mb-5">What We Build</div>
         <h2 class="font-display font-800 text-4xl lg:text-5xl text-silver-100 leading-[1.1] mb-5">
-          Full-stack intelligence<br/>for your business
+          Full-stack AI solutions<br/>for your business
         </h2>
         <p class="font-body text-silver-300 text-lg">
           From AI-powered customer touchpoints to polished web presence — we engineer every layer of your digital operation.
@@ -671,7 +754,7 @@
           </div>
           <h3 class="font-display font-700 text-silver-100 text-xl mb-3">AI Receptionist</h3>
           <p class="font-body text-silver-300 text-sm leading-relaxed">
-            A 24/7 chatbot that greets visitors, qualifies leads, answers FAQs, and books appointments — all without lifting a finger.
+            A 24/7 AI receptionist that greets visitors, qualifies leads, answers FAQs, and books appointments — automatically.
           </p>
         </div>
 
@@ -697,7 +780,7 @@
           </div>
           <h3 class="font-display font-700 text-silver-100 text-xl mb-3">Web Design</h3>
           <p class="font-body text-silver-300 text-sm leading-relaxed">
-            Modern, conversion-focused websites that don't just look good — they're engineered to capture, nurture, and convert.
+            Modern, conversion-focused websites engineered to capture, nurture, and convert — with your AI tools integrated from day one.
           </p>
         </div>
 
@@ -708,9 +791,9 @@
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>
-          <h3 class="font-display font-700 text-silver-100 text-xl mb-3">AI Consulting</h3>
+          <h3 class="font-display font-700 text-silver-100 text-xl mb-3">Business Automations</h3>
           <p class="font-body text-silver-300 text-sm leading-relaxed">
-            Expert strategy sessions to map out how AI can eliminate bottlenecks, cut costs, and unlock new revenue in your workflow.
+            Custom AI consulting and workflow automation to eliminate bottlenecks, cut costs, and unlock new revenue in your operations.
           </p>
         </div>
 
@@ -719,13 +802,10 @@
   </section>
 
 
-  <div class="section-divider mx-12 lg:mx-24"></div>
-
-
   <!-- ══════════════════════════════════════════════
-       PACKAGES / PRICING
+       PACKAGES / PRICING  (mid band)
   ══════════════════════════════════════════════ -->
-  <section id="packages" class="relative z-10 py-28 px-6 lg:px-12">
+  <section id="packages" class="relative z-10 py-28 px-6 lg:px-12 section-band-mid">
     <div class="max-w-7xl mx-auto">
 
       <div class="text-center max-w-2xl mx-auto mb-20 reveal">
@@ -734,7 +814,7 @@
           Pick your level of<br/><span class="text-cyan-glow">automation</span>
         </h2>
         <p class="font-body text-silver-300 text-lg">
-          Every package is a monthly subscription with no long-term contracts. Upgrade anytime as your business grows.
+          Monthly subscriptions, no long-term contracts. Upgrade anytime as your business grows.
         </p>
       </div>
 
@@ -754,7 +834,7 @@
           <div class="section-divider mb-6"></div>
 
           <ul class="check-list mb-8 space-y-3">
-            <li>AI Receptionist Chatbot on your website</li>
+            <li>AI Receptionist chatbot on your website</li>
             <li>Single calendar integration for bookings</li>
             <li>Lead capture & notification system</li>
             <li>FAQ auto-response setup</li>
@@ -762,7 +842,7 @@
           </ul>
 
           <a href="https://buy.stripe.com/test_28EfZi2DccUe6aObVldQQ00" target="_blank" rel="noopener"
-             class="btn-outline w-full py-3.5 rounded-xl text-sm text-center block hover:btn-primary transition-all">
+             class="btn-outline w-full py-3.5 rounded-xl text-sm text-center block">
             Get Started
           </a>
         </div>
@@ -787,8 +867,8 @@
           <ul class="check-list mb-8 space-y-3">
             <li>Everything in Starter</li>
             <li>SMS chatbot for outbound & follow-up</li>
-            <li>Voice AI chatbot integration</li>
-            <li>CMS & CRM automation workflows</li>
+            <li>Voice AI integration</li>
+            <li>CRM & calendar automation workflows</li>
             <li>Multi-step lead nurture sequences</li>
             <li>Bi-weekly check-in calls</li>
           </ul>
@@ -807,7 +887,7 @@
               <span class="font-display font-800 text-4xl text-silver-100">$1,197</span>
               <span class="font-body text-silver-400 pb-1">/month</span>
             </div>
-            <p class="font-body text-silver-400 text-sm">Enterprise-grade automation for multi-location businesses and high-volume operations.</p>
+            <p class="font-body text-silver-400 text-sm">Enterprise-grade business automations for multi-location and high-volume operations.</p>
           </div>
 
           <div class="section-divider mb-6"></div>
@@ -830,8 +910,191 @@
 
       </div>
 
+      <!-- ── COMPARISON TABLE ── -->
+      <div class="mt-16 reveal" style="transition-delay:0.2s">
+        <div class="text-center mb-8">
+          <div class="tag mb-3">Compare Plans</div>
+          <h3 class="font-display font-700 text-2xl text-silver-100">Everything, side by side</h3>
+        </div>
+
+        <!-- Desktop table -->
+        <div class="compare-table-wrap hidden md:block overflow-x-auto">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th class="text-left text-silver-300 font-body font-500 text-sm w-2/5">Feature</th>
+                <th class="text-silver-200 text-sm">
+                  <div class="font-display font-700">Starter</div>
+                  <div class="font-body font-400 text-cyan-glow text-lg mt-0.5">$297<span class="text-silver-400 text-xs">/mo</span></div>
+                </th>
+                <th class="col-growth-head text-silver-100 text-sm">
+                  <div class="font-display font-700 text-cyan-glow">Growth</div>
+                  <div class="font-body font-400 text-cyan-glow text-lg mt-0.5">$597<span class="text-silver-400 text-xs">/mo</span></div>
+                </th>
+                <th class="text-silver-200 text-sm">
+                  <div class="font-display font-700">Pro</div>
+                  <div class="font-body font-400 text-cyan-glow text-lg mt-0.5">$1,197<span class="text-silver-400 text-xs">/mo</span></div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AI Receptionist Chatbot</td>
+                <td><span class="check-icon">✦</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Calendar Integration</td>
+                <td class="text-silver-300">1 calendar</td>
+                <td class="col-growth text-silver-200">Unlimited</td>
+                <td class="text-silver-200">Unlimited</td>
+              </tr>
+              <tr>
+                <td>Lead Capture & Notifications</td>
+                <td><span class="check-icon">✦</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>FAQ Auto-Response</td>
+                <td><span class="check-icon">✦</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Performance Reports</td>
+                <td class="text-silver-300">Monthly</td>
+                <td class="col-growth text-silver-200">Bi-weekly</td>
+                <td class="text-silver-200">Weekly</td>
+              </tr>
+              <tr>
+                <td>SMS Chatbot (Outbound & Follow-Up)</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Voice AI Integration</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>CRM Automation Workflows</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Multi-Step Lead Nurture Sequences</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="check-icon">✦</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Check-In Calls</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth text-silver-200">Bi-weekly</td>
+                <td class="text-silver-200">Weekly</td>
+              </tr>
+              <tr>
+                <td>Custom Automation Builds</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="dash-icon">—</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Multi-Location Management</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="dash-icon">—</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Advanced Analytics Dashboard</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="dash-icon">—</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Priority Dedicated Support</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="dash-icon">—</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Quarterly Strategy Sessions</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="dash-icon">—</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr>
+                <td>Early Feature Access</td>
+                <td><span class="dash-icon">—</span></td>
+                <td class="col-growth"><span class="dash-icon">—</span></td>
+                <td><span class="check-icon">✦</span></td>
+              </tr>
+              <tr class="compare-price-row">
+                <td class="font-body text-silver-400 text-sm">Monthly Price</td>
+                <td>$297/mo</td>
+                <td class="col-growth">$597/mo</td>
+                <td>$1,197/mo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile: stacked comparison cards -->
+        <div class="md:hidden space-y-4">
+          <!-- Starter mobile -->
+          <div class="card-glow rounded-2xl p-6">
+            <div class="flex justify-between items-center mb-4">
+              <div class="tag">Starter</div>
+              <span class="font-display font-700 text-xl text-silver-100">$297<span class="text-silver-400 text-sm font-body font-400">/mo</span></span>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-silver-300">
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> AI Receptionist Chatbot</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> 1 Calendar Integration</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Lead Capture & Notifications</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> FAQ Auto-Response</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Monthly Reports</li>
+            </ul>
+          </div>
+          <!-- Growth mobile -->
+          <div class="card-pro rounded-2xl p-6">
+            <div class="flex justify-between items-center mb-4">
+              <div class="tag">Growth ★ Most Popular</div>
+              <span class="font-display font-700 text-xl text-cyan-glow">$597<span class="text-silver-400 text-sm font-body font-400">/mo</span></span>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-silver-300">
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Everything in Starter</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> SMS & Voice AI</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> CRM Automation</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Lead Nurture Sequences</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Bi-weekly Check-Ins</li>
+            </ul>
+          </div>
+          <!-- Pro mobile -->
+          <div class="card-glow rounded-2xl p-6">
+            <div class="flex justify-between items-center mb-4">
+              <div class="tag">Pro</div>
+              <span class="font-display font-700 text-xl text-silver-100">$1,197<span class="text-silver-400 text-sm font-body font-400">/mo</span></span>
+            </div>
+            <ul class="space-y-2 font-body text-sm text-silver-300">
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Everything in Growth</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Custom Automation Builds</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Multi-Location Management</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Advanced Analytics</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Priority Support</li>
+              <li class="flex gap-2"><span class="text-cyan-glow">✦</span> Quarterly Strategy Sessions</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
       <!-- Bottom note -->
-      <p class="text-center font-body text-silver-400 text-sm mt-8 reveal" style="transition-delay:0.2s">
+      <p class="text-center font-body text-silver-400 text-sm mt-8 reveal" style="transition-delay:0.25s">
         Not sure which plan fits? <a href="#" target="_blank" rel="noopener" class="text-cyan-glow hover:underline">Book a free 20-minute strategy call</a> and we'll figure it out together.
       </p>
 
@@ -839,11 +1102,8 @@
   </section>
 
 
-  <div class="section-divider mx-12 lg:mx-24"></div>
-
-
   <!-- ══════════════════════════════════════════════
-       HOW IT WORKS
+       HOW IT WORKS  (standard dark)
   ══════════════════════════════════════════════ -->
   <section id="how-it-works" class="relative z-10 py-28 px-6 lg:px-12">
     <div class="max-w-7xl mx-auto">
@@ -851,10 +1111,10 @@
       <div class="text-center max-w-2xl mx-auto mb-20 reveal">
         <div class="tag mb-5">The Process</div>
         <h2 class="font-display font-800 text-4xl lg:text-5xl text-silver-100 leading-[1.1] mb-5">
-          Live in 48 hours.<br/><span class="text-cyan-glow">Seriously.</span>
+          Simple to start.<br/><span class="text-cyan-glow">Built to scale.</span>
         </h2>
         <p class="font-body text-silver-300 text-lg">
-          We've streamlined onboarding so you can stop losing leads immediately — not in 6 weeks.
+          We've streamlined onboarding so your AI systems go live quickly — not in six weeks.
         </p>
       </div>
 
@@ -883,7 +1143,7 @@
               </svg>
             </div>
             <h3 class="font-display font-700 text-silver-100 text-lg mb-2">We Build</h3>
-            <p class="font-body text-silver-400 text-sm leading-relaxed">Our team configures your AI system, integrates your calendar and CRM, and sets up all automations.</p>
+            <p class="font-body text-silver-400 text-sm leading-relaxed">Our team configures your AI system, integrates your calendar and CRM, and sets up all business automations.</p>
           </div>
 
           <div class="text-center reveal" style="transition-delay:0.15s">
@@ -914,13 +1174,10 @@
   </section>
 
 
-  <div class="section-divider mx-12 lg:mx-24"></div>
-
-
   <!-- ══════════════════════════════════════════════
-       ADDITIONAL SERVICES
+       ADDITIONAL SERVICES  (banded)
   ══════════════════════════════════════════════ -->
-  <section class="relative z-10 py-28 px-6 lg:px-12">
+  <section class="relative z-10 py-28 px-6 lg:px-12 section-band">
     <div class="max-w-7xl mx-auto">
 
       <div class="text-center max-w-2xl mx-auto mb-20 reveal">
@@ -942,7 +1199,7 @@
             <h3 class="font-display font-700 text-silver-100 text-xl">Web Design</h3>
           </div>
           <p class="font-body text-silver-300 text-sm leading-relaxed mb-5">
-            Modern, clean, conversion-first websites that are built as complete digital systems — not just pretty pages. Integrated with your AI tools from day one.
+            Modern, clean, conversion-first websites built as complete digital systems — not just pretty pages. AI-integrated from launch.
           </p>
           <a href="#contact" class="font-mono text-xs text-cyan-glow hover:text-cyan-mid transition-colors tracking-wide uppercase flex items-center gap-2">
             Learn More
@@ -962,7 +1219,7 @@
             <h3 class="font-display font-700 text-silver-100 text-xl">Brand Design</h3>
           </div>
           <p class="font-body text-silver-300 text-sm leading-relaxed mb-5">
-            Stand out with a brand identity that communicates credibility and authority. Logos, color systems, typography, and full brand guidelines built to last.
+            Stand out with an identity that communicates credibility. Logos, color systems, typography, and brand guidelines built to last.
           </p>
           <a href="#contact" class="font-mono text-xs text-cyan-glow hover:text-cyan-mid transition-colors tracking-wide uppercase flex items-center gap-2">
             Learn More
@@ -982,7 +1239,7 @@
             <h3 class="font-display font-700 text-silver-100 text-xl">AI Consulting</h3>
           </div>
           <p class="font-body text-silver-300 text-sm leading-relaxed mb-5">
-            Not sure where AI fits in your business? We map out exactly where automation can save time, reduce costs, and open new revenue — then build it for you.
+            Not sure where AI fits? We map out exactly where business automations can save time, reduce costs, and open new revenue — then build it for you.
           </p>
           <a href="#contact" class="font-mono text-xs text-cyan-glow hover:text-cyan-mid transition-colors tracking-wide uppercase flex items-center gap-2">
             Learn More
@@ -1000,7 +1257,7 @@
   <!-- ══════════════════════════════════════════════
        CTA BANNER
   ══════════════════════════════════════════════ -->
-  <section class="relative z-10 py-6 px-6 lg:px-12">
+  <section class="relative z-10 py-12 px-6 lg:px-12">
     <div class="max-w-7xl mx-auto">
       <div class="relative overflow-hidden rounded-3xl p-12 lg:p-16 text-center reveal"
            style="background: linear-gradient(135deg, rgba(0,229,255,0.08) 0%, rgba(0,80,120,0.2) 50%, rgba(0,229,255,0.05) 100%); border: 1px solid rgba(0,229,255,0.2);">
@@ -1011,7 +1268,7 @@
             Stop losing leads.<br/><span class="text-cyan-glow">Start scaling.</span>
           </h2>
           <p class="font-body text-silver-300 text-lg max-w-xl mx-auto mb-10">
-            Book a free strategy call and we'll show you exactly how Insight AI can be running in your business within 48 hours.
+            Book a free strategy call and we'll show you exactly how our AI solutions and business automations can work for you.
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#" target="_blank" rel="noopener"
@@ -1021,7 +1278,7 @@
               </svg>
               Schedule a Strategy Call
             </a>
-            <a href="tel:+17754427070‬"
+            <a href="tel:+17754427070"
                class="btn-outline px-10 py-4 rounded-xl text-base flex items-center gap-3">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
@@ -1035,13 +1292,10 @@
   </section>
 
 
-  <div class="section-divider mx-12 lg:mx-24 my-10"></div>
-
-
   <!-- ══════════════════════════════════════════════
-       CONTACT FORM
+       CONTACT FORM  (mid band)
   ══════════════════════════════════════════════ -->
-  <section id="contact" class="relative z-10 py-28 px-6 lg:px-12">
+  <section id="contact" class="relative z-10 py-28 px-6 lg:px-12 section-band-mid">
     <div class="max-w-7xl mx-auto">
       <div class="grid lg:grid-cols-2 gap-16">
 
@@ -1052,7 +1306,7 @@
             Let's build something<br/><span class="text-cyan-glow">intelligent.</span>
           </h2>
           <p class="font-body text-silver-300 leading-relaxed mb-10">
-            Whether you want a full demo, have questions about a specific package, or need a custom automation — drop us a message and we'll follow up within one business day.
+            Whether you want a full demo, have questions about a package, or need a custom business automation — send us a message and we'll follow up within one business day.
           </p>
 
           <div class="space-y-5">
@@ -1064,7 +1318,7 @@
               </div>
               <div>
                 <div class="font-body text-xs text-silver-400 mb-0.5">Phone / Live Demo</div>
-                <a href="tel:+17754427070‬" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">+1 (801) 555-0000</a>
+                <a href="tel:+17754427070" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">+1 (775) 442-7070</a>
               </div>
             </div>
 
@@ -1076,7 +1330,7 @@
               </div>
               <div>
                 <div class="font-body text-xs text-silver-400 mb-0.5">Email</div>
-                <a href="mailto:hello@insightwebtech.com" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors">hello@insightwebtech.com</a>
+                <a href="/cdn-cgi/l/email-protection#59313c3535361930372a303e312d2e3c3b2d3c3a31773a3634" class="font-display font-600 text-silver-100 hover:text-cyan-glow transition-colors"><span class="__cf_email__" data-cfemail="c2aaa7aeaead82abacb1aba5aab6b5a7a0b6a7a1aaeca1adaf">[email&#160;protected]</span></a>
               </div>
             </div>
 
@@ -1113,7 +1367,7 @@
             </div>
             <div>
               <label class="font-mono text-xs text-silver-400 tracking-widest uppercase mb-2 block">Phone Number</label>
-              <input type="tel" placeholder="+1 (801) 555-0000" class="form-input" />
+              <input type="tel" placeholder="+1 (775) 442-7070" class="form-input" />
             </div>
             <div>
               <label class="font-mono text-xs text-silver-400 tracking-widest uppercase mb-2 block">I'm interested in…</label>
@@ -1149,7 +1403,7 @@
               </svg>
             </div>
             <h3 class="font-display font-700 text-silver-100 text-xl mb-2">Message Received!</h3>
-            <p class="font-body text-silver-400 text-sm">We'll reach out within one business day. In the meantime, feel free to <a href="tel:+17754427070‬" class="text-cyan-glow hover:underline">call us</a> for an instant demo.</p>
+            <p class="font-body text-silver-400 text-sm">We'll reach out within one business day. In the meantime, feel free to <a href="tel:+17754427070" class="text-cyan-glow hover:underline">call us</a> for an instant demo.</p>
           </div>
         </div>
 
@@ -1177,7 +1431,7 @@
             <span class="font-display font-700 text-silver-100 text-lg tracking-tight">Insight<span class="text-cyan-glow">Web</span> Technologies</span>
           </a>
           <p class="font-body text-silver-400 text-sm leading-relaxed max-w-xs mb-5">
-            AI receptionists and automation systems for businesses that want to scale intelligently and never miss a lead.
+            Business AI solutions, AI receptionists, and automation systems for companies that want to scale intelligently and never miss a lead.
           </p>
           <div class="flex items-center gap-3">
             <a href="#" target="_blank" rel="noopener"
@@ -1205,6 +1459,7 @@
           <ul class="space-y-2.5 font-body text-sm text-silver-400">
             <li><a href="#packages" class="hover:text-silver-100 transition-colors">AI Receptionist</a></li>
             <li><a href="#packages" class="hover:text-silver-100 transition-colors">SMS & Voice AI</a></li>
+            <li><a href="#packages" class="hover:text-silver-100 transition-colors">Business Automations</a></li>
             <li><a href="#services" class="hover:text-silver-100 transition-colors">Web Design</a></li>
             <li><a href="#services" class="hover:text-silver-100 transition-colors">Brand Design</a></li>
             <li><a href="#services" class="hover:text-silver-100 transition-colors">AI Consulting</a></li>
@@ -1229,7 +1484,7 @@
         <p class="font-mono text-xs text-silver-400">© 2025 Insight Web Technologies. All rights reserved.</p>
         <div class="flex gap-6 font-mono text-xs text-silver-400">
           <a href="#" class="hover:text-cyan-glow transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-cyan-glow transition-colors">Terms of Service</a>
+          <a href="/terms" class="hover:text-cyan-glow transition-colors">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -1239,6 +1494,7 @@
   <!-- ══════════════════════════════════════════════
        SCRIPTS
   ══════════════════════════════════════════════ -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     // ── Scroll progress bar ──
     window.addEventListener('scroll', () => {
@@ -1251,11 +1507,7 @@
     // ── Navbar background on scroll ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
     });
 
     // ── Mobile menu toggle ──
@@ -1265,13 +1517,11 @@
     const iconClose = document.getElementById('icon-close');
 
     hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.contains('open');
       mobileMenu.classList.toggle('open');
       iconOpen.classList.toggle('hidden');
       iconClose.classList.toggle('hidden');
     });
 
-    // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
@@ -1283,9 +1533,7 @@
     // ── Intersection Observer for reveal animations ──
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
@@ -1301,6 +1549,9 @@
       setTimeout(() => {
         form.style.display = 'none';
         success.classList.remove('hidden');
+        success.style.opacity = '0';
+        success.style.transition = 'opacity 0.4s ease';
+        requestAnimationFrame(() => { success.style.opacity = '1'; });
       }, 300);
     }
   </script>
