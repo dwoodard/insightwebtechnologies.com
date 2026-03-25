@@ -733,6 +733,10 @@
     }, 300);
   }
 </script>
-
+<script 
+  src="https://widgets.leadconnectorhq.com/loader.js"  
+  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
+ data-widget-id="69b30fdb4ed9d7630a7f34e8"   > 
+ </script>
 </body>
 </html>
