@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,7 @@
       theme: {
         extend: {
           fontFamily: {
-            display: ['Syne', 'sans-serif'],
+            display: ['sans-serif'],
             mono: ['DM Mono', 'monospace'],
             body: ['Outfit', 'sans-serif'],
           },
@@ -760,7 +761,7 @@
             <li>Monthly performance report</li>
           </ul>
 
-          <a href="#" target="_blank" rel="noopener"
+          <a href="https://buy.stripe.com/test_28EfZi2DccUe6aObVldQQ00" target="_blank" rel="noopener"
              class="btn-outline w-full py-3.5 rounded-xl text-sm text-center block hover:btn-primary transition-all">
             Get Started
           </a>
@@ -792,7 +793,7 @@
             <li>Bi-weekly check-in calls</li>
           </ul>
 
-          <a href="#" target="_blank" rel="noopener"
+          <a href="https://buy.stripe.com/test_14A28s4LkcUe1Uy6B1dQQ01" target="_blank" rel="noopener"
              class="btn-primary w-full py-3.5 rounded-xl text-sm text-center block">
             Get Started
           </a>
@@ -821,7 +822,7 @@
             <li>First access to new features</li>
           </ul>
 
-          <a href="#" target="_blank" rel="noopener"
+          <a href="https://buy.stripe.com/test_7sY00kfpYdYieHkf7xdQQ02" target="_blank" rel="noopener"
              class="btn-outline w-full py-3.5 rounded-xl text-sm text-center block">
             Get Started
           </a>
@@ -1303,6 +1304,10 @@
       }, 300);
     }
   </script>
-
+<script 
+  src="https://widgets.leadconnectorhq.com/loader.js"  
+  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
+ data-widget-id="69b30fdb4ed9d7630a7f34e8"   > 
+ </script>
 </body>
 </html>
