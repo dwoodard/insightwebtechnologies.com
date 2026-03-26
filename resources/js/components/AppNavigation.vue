@@ -96,7 +96,7 @@ onMounted(() => {
             <ul class="hidden items-center gap-8 text-sm font-semibold md:flex">
                 <li>
                     <a
-                        href="#how-it-works"
+                        href="/#how-it-works"
                         class="nav-link transition-colors hover:text-blue-500"
                         :class="navLinkClasses"
                         >How It Works</a
@@ -104,7 +104,7 @@ onMounted(() => {
                 </li>
                 <li>
                     <a
-                        href="#packages"
+                        href="/#packages"
                         class="nav-link transition-colors hover:text-blue-500"
                         :class="
                             variant === 'welcome'
@@ -116,7 +116,7 @@ onMounted(() => {
                 </li>
                 <li>
                     <a
-                        href="#services"
+                        href="/#services"
                         class="nav-link transition-colors hover:text-blue-500"
                         :class="
                             variant === 'welcome'
@@ -128,7 +128,7 @@ onMounted(() => {
                 </li>
                 <li>
                     <a
-                        href="#contact"
+                        href="/#contact"
                         class="nav-link transition-colors hover:text-blue-500"
                         :class="
                             variant === 'welcome'
