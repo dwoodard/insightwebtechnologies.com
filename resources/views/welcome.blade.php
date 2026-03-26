@@ -75,6 +75,14 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     #navbar { transition: background 0.3s, box-shadow 0.3s; }
+    #navbar .brand-text { color: white; transition: color 0.3s; }
+    #navbar .nav-link { color: white; transition: color 0.3s; }
+    #navbar .btn-outline { color: white; border-color: white; transition: all 0.3s; }
+    #navbar #hamburger { color: white; transition: color 0.3s; }
+    #navbar.scrolled .brand-text { color: #001F3F; }
+    #navbar.scrolled .nav-link { color: #374151; }
+    #navbar.scrolled .btn-outline { color: #374151; border-color: #D1D5DB; }
+    #navbar.scrolled #hamburger { color: #374151; }
     #navbar.scrolled { background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); box-shadow: 0 1px 0 #E5E7EB, 0 4px 18px rgba(0,0,0,0.05); }
 
     .btn-primary { background:#2563EB; color:#fff; font-weight:700; border-radius:10px; transition:all 0.2s; display:inline-flex; align-items:center; gap:8px; }
@@ -159,13 +167,13 @@
       <div class="w-9 h-9 rounded-xl bg-blue flex items-center justify-center">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1L16 5V13L9 17L2 13V5L9 1Z" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.15)"/><circle cx="9" cy="9" r="2.5" fill="white"/></svg>
       </div>
-      <span class="font-bold text-navy text-lg tracking-tight" style="font-weight:800">Insight<span class="text-blue">Web</span></span>
+      <span class="font-bold text-lg tracking-tight brand-text" style="font-weight:800">Insight<span class="text-blue">Web</span></span>
     </a>
-    <ul class="hidden md:flex items-center gap-8 text-sm font-semibold text-body">
-      <li><a href="#how-it-works" class="hover:text-blue transition-colors">How It Works</a></li>
-      <li><a href="#packages" class="hover:text-blue transition-colors">Packages</a></li>
-      <li><a href="#services" class="hover:text-blue transition-colors">More Services</a></li>
-      <li><a href="#contact" class="hover:text-blue transition-colors">Contact</a></li>
+    <ul class="hidden md:flex items-center gap-8 text-sm font-semibold">
+      <li><a href="#how-it-works" class="nav-link hover:text-blue transition-colors">How It Works</a></li>
+      <li><a href="#packages" class="nav-link hover:text-blue transition-colors">Packages</a></li>
+      <li><a href="#services" class="nav-link hover:text-blue transition-colors">More Services</a></li>
+      <li><a href="#contact" class="nav-link hover:text-blue transition-colors">Contact</a></li>
     </ul>
     <div class="hidden md:flex items-center gap-3">
       <a href="tel:+17754427070" class="btn-outline text-sm px-5 py-2.5">
@@ -254,7 +262,7 @@
       <!-- Chat card -->
       <div class="hidden lg:block reveal" style="transition-delay:0.3s">
         <div class="relative max-w-sm ml-auto">
-          <div class="bg-white rounded-2xl p-6" style="box-shadow:0 20px 60px rgba(13,31,78,0.25);">
+          <div class="bg-white rounded-2xl p-6 relative" style="box-shadow:0 20px 60px rgba(13,31,78,0.25);">
             <div class="flex items-center gap-3 mb-4 pb-4 border-b border-bdr">
               <div class="w-10 h-10 rounded-full bg-blue flex items-center justify-center flex-shrink-0">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -283,7 +291,7 @@
               <div class="text-center"><div class="font-extrabold text-blue text-lg">∞</div><div class="text-xs text-muted">Chats at once</div></div>
             </div>
           </div>
-          <div class="absolute -top-4 -right-4 bg-green-500 text-white rounded-xl px-3 py-2 text-xs font-bold shadow-lg">Never miss a lead</div>
+          <div class="absolute -top-4 -right-4 bg-green-500 text-black bg-white rounded-xl px-3 py-2 text-xs font-bold shadow-lg">Never miss a lead</div>
         </div>
       </div>
     </div>
@@ -733,10 +741,10 @@
     }, 300);
   }
 </script>
-<script 
-  src="https://widgets.leadconnectorhq.com/loader.js"  
-  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
- data-widget-id="69b30fdb4ed9d7630a7f34e8"   > 
+<script
+  src="https://widgets.leadconnectorhq.com/loader.js"
+  data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+ data-widget-id="69b30fdb4ed9d7630a7f34e8"   >
  </script>
 </body>
 </html>
