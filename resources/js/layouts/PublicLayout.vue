@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
     <Head :title="title" />
-    <div class="min-h-screen flex flex-col bg-white">
+    <div class="flex min-h-screen flex-col bg-white">
         <AppNavigation />
         <main class="flex-1">
             <slot />
