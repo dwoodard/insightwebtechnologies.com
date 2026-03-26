@@ -7,7 +7,10 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 // Load external scripts
-const loadExternalScript = (src: string, attributes: Record<string, string> = {}) => {
+const loadExternalScript = (
+    src: string,
+    attributes: Record<string, string> = {},
+) => {
     const script = document.createElement('script');
     script.src = src;
     Object.entries(attributes).forEach(([key, value]) => {
@@ -18,7 +21,8 @@ const loadExternalScript = (src: string, attributes: Record<string, string> = {}
 
 // Load Lead Connector widget
 loadExternalScript('https://widgets.leadconnectorhq.com/loader.js', {
-    'data-resources-url': 'https://widgets.leadconnectorhq.com/chat-widget/loader.js',
+    'data-resources-url':
+        'https://widgets.leadconnectorhq.com/chat-widget/loader.js',
     'data-widget-id': '69b30fdb4ed9d7630a7f34e8',
 });
 
