@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { ref, onMounted } from 'vue';
 import PublicLayout from '@/layouts/PublicLayout.vue';
 
 const scrollProgress = ref(0);

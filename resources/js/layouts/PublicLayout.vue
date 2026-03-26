@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AppNavigation from '@/components/AppNavigation.vue';
-import AppFooter from '@/components/AppFooter.vue';
 import { Head } from '@inertiajs/vue3';
+import AppFooter from '@/components/AppFooter.vue';
+import AppNavigation from '@/components/AppNavigation.vue';
 
 type Props = {
     title?: string;
