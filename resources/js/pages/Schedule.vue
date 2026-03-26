@@ -16,7 +16,7 @@ onMounted(() => {
     <div class="h-screen w-screen">
         <iframe
             src="https://api.leadconnectorhq.com/widget/booking/ASdGBIhv9QApXkA1Nmi0"
-            style="width: 100%; border: none; overflow: hidden;"
+            style="width: 100%; border: none; overflow: hidden"
             scrolling="no"
             id="ASdGBIhv9QApXkA1Nmi0_1774542301565"
         />

@@ -2,9 +2,9 @@
 import { Head } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import PublicLayout from '@/layouts/PublicLayout.vue';
-import ComparePlans from './ComparePlans.vue';
-import { schedule } from '@/routes';
 import { toUrl } from '@/lib/utils';
+import { schedule } from '@/routes';
+import ComparePlans from './ComparePlans.vue';
 
 const scrollProgress = ref(0);
 const formSubmitted = ref(false);
@@ -103,7 +103,7 @@ const handleFormSubmit = (e: Event) => {
                             <span
                                 class="h-2 w-2 animate-pulse rounded-full bg-green-500"
                             ></span>
-                            Live demo available,  Try it now!
+                            Live demo available, Try it now!
                         </span>
                         <span class="text-white/30">|</span>
                         <a

@@ -2,7 +2,6 @@
 import { Link } from '@inertiajs/vue3';
 import { ref, onMounted, computed } from 'vue';
 
-
 type Variant = 'welcome' | 'default';
 
 const props = withDefaults(
@@ -33,10 +32,12 @@ const hamburgerClasses = computed(() => {
     if (!isWelcome.value) {
         return 'text-gray-700 hover:text-gray-900';
     }
+
     // For welcome variant, switch color when scrolled
     if (isScrolled.value) {
         return 'text-gray-800 hover:text-gray-900';
     }
+
     return 'text-white hover:text-gray-100';
 });
 const mobileMenuClasses = computed(() => ({
@@ -62,7 +63,7 @@ onMounted(() => {
 <template>
     <nav
         id="navbar"
-        class="fixed top-0 right-0 left-0 z-50 px-6 transition-all duration-300 lg:px-12 &>scrolled:bg-white/95 &>scrolled:backdrop-blur-xl &>scrolled:shadow-lg    "
+        class="&>scrolled:bg-white/95 &>scrolled:backdrop-blur-xl &>scrolled:shadow-lg fixed top-0 right-0 left-0 z-50 px-6 transition-all duration-300 lg:px-12"
         :class="[navbarClasses, { scrolled: isScrolled || mobileMenuOpen }]"
     >
         <div
@@ -206,7 +207,7 @@ onMounted(() => {
         <!-- Mobile Menu -->
         <div
             v-if="mobileMenuOpen"
-            class="flex flex-col gap-3 px-2 pt-4 pb-5 backdrop-blur-xl shadow-lg md:hidden"
+            class="flex flex-col gap-3 px-2 pt-4 pb-5 shadow-lg backdrop-blur-xl md:hidden"
             :class="mobileMenuClasses"
         >
             <a
