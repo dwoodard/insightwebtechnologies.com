@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import PublicLayout from '@/layouts/PublicLayout.vue';
+import ComparePlans from './ComparePlans.vue';
 
 const scrollProgress = ref(0);
 const formSubmitted = ref(false);
@@ -153,7 +154,7 @@ const handleFormSubmit = (e: Event) => {
                         >
                             <a
                                 href="#contact"
-                                class="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-7 py-3.5 text-base font-bold text-blue-900 transition-colors hover:bg-gray-100"
+                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-teal-900 transition-colors hover:bg-white/90"
                             >
                                 <svg
                                     width="15"
@@ -1003,6 +1004,11 @@ const handleFormSubmit = (e: Event) => {
             </div>
         </section>
 
+        <!-- Comparison table -->
+        <section class="p-3">
+            <ComparePlans />
+        </section>
+
         <!-- MORE SERVICES -->
         <section id="services" class="bg-white px-6 py-24 lg:px-12">
             <div class="mx-auto max-w-7xl">
@@ -1181,6 +1187,75 @@ const handleFormSubmit = (e: Event) => {
                             </li>
                         </ul>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="section-teal px-6 py-16 lg:px-12">
+            <div class="reveal visible mx-auto max-w-4xl text-center">
+                <div
+                    class="mb-5 inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-bold text-white"
+                >
+                    Ready to get started?
+                </div>
+                <h2
+                    class="mb-5 text-3xl leading-[1.15] text-white lg:text-5xl"
+                    style="font-weight: 800"
+                >
+                    Let's put AI to work<br />on your website.
+                </h2>
+                <p class="mx-auto mb-10 max-w-xl text-lg text-white/80">
+                    Book a free 20-minute call and we'll show you exactly how an
+                    AI assistant would work for your business — no commitment
+                    required.
+                </p>
+                <div
+                    class="flex flex-col items-center justify-center gap-4 sm:flex-row"
+                >
+                    <a
+                        href="#contact"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-teal-600 transition-colors hover:bg-white/90"
+                    >
+                        <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        >
+                            <rect
+                                x="3"
+                                y="4"
+                                width="18"
+                                height="18"
+                                rx="2"
+                            ></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Book a Free Strategy Call
+                    </a>
+                    <a
+                        href="tel:+17754427070"
+                        class="flex items-center gap-2 text-base font-bold text-white transition-colors hover:text-white/80"
+                    >
+                        <svg
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        >
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                            ></path>
+                        </svg>
+                        Or call +1 (775) 442-7070
+                    </a>
                 </div>
             </div>
         </section>
@@ -1488,5 +1563,9 @@ const handleFormSubmit = (e: Event) => {
 
 .animate-scroll {
     animation: scroll 28s linear infinite;
+}
+
+.section-teal {
+    background: linear-gradient(135deg, #0891b2 0%, #0369a1 100%);
 }
 </style>

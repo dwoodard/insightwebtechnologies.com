@@ -169,7 +169,123 @@
     * {
         @apply border-border outline-ring/50;
     }
-    body {
-        @apply bg-background text-foreground;
+}
+
+@layer components {
+    .cmp-table {
+        @apply w-full border-collapse;
+        border-spacing: 0;
+    }
+
+    .cmp-table th {
+        @apply border-b-2 border-gray-200 bg-slate-50 px-4 py-3 text-center text-xs font-bold;
+    }
+
+    .cmp-table th:first-child {
+        @apply rounded-tl-3xl text-left;
+    }
+
+    .cmp-table th:last-child {
+        @apply rounded-tr-3xl;
+    }
+
+    .cmp-table td {
+        @apply border-b border-slate-50 px-4 py-2.5 text-center text-sm text-gray-500;
+    }
+
+    .cmp-table td:first-child {
+        @apply text-left font-medium text-gray-700;
+    }
+
+    .cmp-table tbody tr:hover td {
+        @apply bg-slate-50;
+    }
+
+    .cmp-table .cf {
+        @apply border-r-2 border-l-2 border-blue-200 bg-blue-50;
+    }
+
+    .cmp-table .cfh {
+        @apply border-r-2 border-l-2 border-blue-200 bg-blue-50 text-blue-500;
+    }
+
+    .cmp-price td {
+        @apply border-t-2 border-b-0 border-gray-200 bg-slate-50 text-sm font-black text-slate-900;
+    }
+
+    .cmp-price td.cf {
+        @apply bg-blue-50 text-blue-500;
+    }
+
+    .y {
+        @apply text-sm font-bold text-emerald-500;
+    }
+
+    .n {
+        @apply text-xs text-gray-300;
+    }
+
+    .chk {
+        @apply mb-2.5 flex items-start gap-2.5 text-sm leading-6;
+    }
+
+    .chk-icon {
+        @apply mt-px flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-500;
+    }
+
+    .chk-icon-d {
+        @apply mt-px flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-full text-blue-400;
+        background: rgba(59, 130, 246, 0.2);
+    }
+
+    .badge {
+        @apply inline-block rounded px-2.5 py-1 text-xs font-bold tracking-wide uppercase;
+    }
+
+    .badge-b {
+        @apply border border-blue-200 bg-blue-50 text-blue-500;
+    }
+
+    .badge-w {
+        @apply border text-white;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .badge-t {
+        @apply border border-cyan-200 bg-cyan-50 text-cyan-700;
+    }
+
+    .card {
+        @apply rounded-2xl border border-gray-200 bg-white transition-all duration-250;
+        box-shadow: 0 2px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .card:hover {
+        @apply -translate-y-0.5 border-blue-300;
+        box-shadow: 0 8px 36px rgba(37, 99, 235, 0.1);
+    }
+
+    .card-featured {
+        @apply rounded-2xl border-2 border-blue-500 text-white transition-all duration-250;
+        background: linear-gradient(145deg, #0d1f4e, #1a3a70);
+        box-shadow: 0 12px 50px rgba(13, 31, 78, 0.22);
+    }
+
+    .card-featured:hover {
+        @apply -translate-y-1;
+        box-shadow: 0 20px 60px rgba(13, 31, 78, 0.32);
+    }
+
+    .section-light {
+        @apply bg-slate-50;
+    }
+
+    .section-navy {
+        background: linear-gradient(135deg, #0d1f4e 0%, #1a3a70 100%);
+    }
+
+    .section-teal {
+        background: linear-gradient(135deg, #0891b2 0%, #0369a1 100%);
     }
 }
