@@ -1,452 +1,629 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
-import { dashboard, login, register } from '@/routes';
+import PublicLayout from '@/layouts/PublicLayout.vue';
 
-withDefaults(
-    defineProps<{
-        canRegister: boolean;
-    }>(),
-    {
-        canRegister: true,
-    },
-);
+const scrollProgress = ref(0);
+const formSubmitted = ref(false);
+
+onMounted(() => {
+    window.addEventListener('scroll', () => {
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = window.scrollY;
+        scrollProgress.value = scrollHeight > 0 ? (scrolled / scrollHeight) * 100 : 0;
+    });
+
+    // Reveal on scroll animation
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+
+const handleFormSubmit = (e: Event) => {
+    e.preventDefault();
+    formSubmitted.value = true;
+    setTimeout(() => {
+        formSubmitted.value = false;
+    }, 3000);
+};
 </script>
 
 <template>
-    <Head title="Welcome">
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    </Head>
-    <div
-        class="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]"
-    >
-        <header
-            class="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl"
-        >
-            <nav class="flex items-center justify-end gap-4">
-                <Link
-                    v-if="$page.props.auth.user"
-                    :href="dashboard()"
-                    class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                >
-                    Dashboard
-                </Link>
-                <template v-else>
-                    <Link
-                        :href="login()"
-                        class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-                    >
-                        Log in
-                    </Link>
-                    <Link
-                        v-if="canRegister"
-                        :href="register()"
-                        class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                    >
-                        Register
-                    </Link>
-                </template>
-            </nav>
-        </header>
+    <PublicLayout title="Welcome - Insight Web Technologies">
+        <Head>
+            <meta name="description" content="Give your business website a 24/7 AI assistant that answers customer questions, books appointments, and follows up on leads automatically." />
+        </Head>
+
+        <!-- Scroll Progress Bar -->
         <div
-            class="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0"
-        >
-            <main
-                class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row"
-            >
+            class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 z-50 transition-all duration-100"
+            :style="{ width: scrollProgress + '%' }"
+        ></div>
+
+        <!-- HERO -->
+        <section class="relative overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24" style="background: linear-gradient(135deg, #0D1F4E 0%, #1a3a70 100%);">
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
-                    class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                >
-                    <h1 class="mb-1 font-medium">Let's get started</h1>
-                    <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
-                        Laravel has an incredibly rich ecosystem. <br />We
-                        suggest starting with the following.
-                    </p>
-                    <ul class="mb-4 flex flex-col lg:mb-6">
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-1/2 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Read the
-                                <a
-                                    href="https://laravel.com/docs"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Documentation</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Watch video tutorials at
-                                <a
-                                    href="https://laracasts.com"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Laracasts</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <ul class="flex gap-3 text-sm leading-normal">
-                        <li>
-                            <a
-                                href="https://cloud.laravel.com"
-                                target="_blank"
-                                class="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:border-white dark:hover:bg-white"
-                            >
-                                Deploy now
+                    class="absolute w-96 h-96 rounded-full pointer-events-none"
+                    style="
+                        background: radial-gradient(circle, rgba(59, 130, 246, 0.14) 0%, transparent 70%);
+                        top: -150px;
+                        right: -100px;
+                    "
+                ></div>
+                <div
+                    class="absolute w-80 h-80 rounded-full pointer-events-none"
+                    style="
+                        background: radial-gradient(circle, rgba(8, 145, 178, 0.09) 0%, transparent 70%);
+                        bottom: -100px;
+                        left: -50px;
+                    "
+                ></div>
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-8">
+                <!-- Live Badge -->
+                <div class="mb-8 reveal">
+                    <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2">
+                        <span class="flex items-center gap-2 text-white text-sm font-semibold">
+                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                            Live demos available
+                        </span>
+                        <span class="text-white/30">|</span>
+                        <a href="tel:+17754427070" class="text-white/80 hover:text-white text-sm font-semibold transition-colors flex items-center gap-1.5">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path
+                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                                />
+                            </svg>
+                            +1 (775) 442-7070
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Content -->
+                <div class="grid lg:grid-cols-2 gap-14 items-center">
+                    <div>
+                        <div class="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-5 reveal">AI Chat Assistant for Local Businesses</div>
+                        <h1 class="text-white text-4xl lg:text-5xl xl:text-6xl leading-[1.1] mb-6 font-bold reveal">
+                            Your website,<br />
+                            <span class="text-blue-400">always working</span><br />
+                            for you.
+                        </h1>
+                        <p class="text-white/75 text-lg leading-relaxed max-w-lg mb-8 reveal">
+                            Add an AI assistant to your website that answers customer questions, books appointments, and captures leads — around the clock, without any extra effort from you.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-3 mb-10 reveal">
+                            <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-7 py-3.5 text-base font-bold rounded-lg hover:bg-gray-100 transition-colors">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                                Book a Free Strategy Call
                             </a>
-                        </li>
-                    </ul>
+                            <a
+                                href="tel:+17754427070"
+                                class="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white px-7 py-3.5 text-base font-bold rounded-lg hover:bg-white/10 transition-colors"
+                            >
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                                    />
+                                </svg>
+                                Hear a Live Demo
+                            </a>
+                        </div>
+                        <div class="flex flex-wrap gap-5 reveal">
+                            <div class="flex items-center gap-2 text-white/60 text-sm">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                                </svg>
+                                5-star rated
+                            </div>
+                            <span class="text-white/20 hidden sm:block">|</span>
+                            <div class="flex items-center gap-2 text-white/60 text-sm">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <polyline points="12 6 12 12 16 14" />
+                                </svg>
+                                Active 24/7
+                            </div>
+                            <span class="text-white/20 hidden sm:block">|</span>
+                            <div class="flex items-center gap-2 text-white/60 text-sm">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                                No long-term contracts
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Card Preview -->
+                    <div class="hidden lg:block reveal">
+                        <div class="relative max-w-sm ml-auto">
+                            <div class="bg-white rounded-2xl p-6 relative shadow-2xl">
+                                <div class="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200">
+                                    <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
+                                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-blue-900 text-sm">Insight Assistant</div>
+                                        <div class="flex items-center gap-1.5 mt-0.5">
+                                            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                            <span class="text-xs text-gray-500">Online · answers in seconds</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space-y-3 mb-4">
+                                    <div class="bg-blue-100 rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-gray-700 max-w-[88%]">Hi! 👋 What can I help you with today?</div>
+                                    <div class="bg-blue-900 rounded-2xl rounded-tr-sm px-4 py-3 text-sm text-white max-w-[88%] ml-auto">Do you have any openings this week?</div>
+                                    <div class="bg-blue-100 rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-gray-700 max-w-[88%]">Yes! I can book you in. What day works best — Wednesday or Thursday?</div>
+                                    <div class="flex gap-1 px-3 py-2.5 bg-gray-100 rounded-2xl max-w-14">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0s"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0.15s"></div>
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0.3s"></div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 pt-4 border-t border-gray-200">
+                                    <div class="text-center">
+                                        <div class="font-extrabold text-blue-600 text-lg">24/7</div>
+                                        <div class="text-xs text-gray-500">Available</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="font-extrabold text-blue-600 text-lg">&lt;5s</div>
+                                        <div class="text-xs text-gray-500">Response</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="font-extrabold text-blue-600 text-lg">∞</div>
+                                        <div class="text-xs text-gray-500">Chats at once</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute -top-4 -right-4 bg-green-500 text-white rounded-xl px-3 py-2 text-xs font-bold shadow-lg">Never miss a lead</div>
+                        </div>
+                    </div>
                 </div>
-                <div
-                    class="relative -mb-px aspect-[335/364] w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1D0002]"
-                >
-                    <!-- Laravel Logo -->
-                    <svg
-                        class="w-full max-w-none translate-y-0 text-[#F53003] opacity-100 transition-all duration-750 dark:text-[#F61500] starting:opacity-0 motion-safe:starting:translate-y-6"
-                        viewBox="0 0 438 104"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M17.2036 -3H0V102.197H49.5189V86.7187H17.2036V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M110.256 41.6337C108.061 38.1275 104.945 35.3731 100.905 33.3681C96.8667 31.3647 92.8016 30.3618 88.7131 30.3618C83.4247 30.3618 78.5885 31.3389 74.201 33.2923C69.8111 35.2456 66.0474 37.928 62.9059 41.3333C59.7643 44.7401 57.3198 48.6726 55.5754 53.1293C53.8287 57.589 52.9572 62.274 52.9572 67.1813C52.9572 72.1925 53.8287 76.8995 55.5754 81.3069C57.3191 85.7173 59.7636 89.6241 62.9059 93.0293C66.0474 96.4361 69.8119 99.1155 74.201 101.069C78.5885 103.022 83.4247 103.999 88.7131 103.999C92.8016 103.999 96.8667 102.997 100.905 100.994C104.945 98.9911 108.061 96.2359 110.256 92.7282V102.195H126.563V32.1642H110.256V41.6337ZM108.76 75.7472C107.762 78.4531 106.366 80.8078 104.572 82.8112C102.776 84.8161 100.606 86.4183 98.0637 87.6206C95.5202 88.823 92.7004 89.4238 89.6103 89.4238C86.5178 89.4238 83.7252 88.823 81.2324 87.6206C78.7388 86.4183 76.5949 84.8161 74.7998 82.8112C73.004 80.8078 71.6319 78.4531 70.6856 75.7472C69.7356 73.0421 69.2644 70.1868 69.2644 67.1821C69.2644 64.1758 69.7356 61.3205 70.6856 58.6154C71.6319 55.9102 73.004 53.5571 74.7998 51.5522C76.5949 49.5495 78.738 47.9451 81.2324 46.7427C83.7252 45.5404 86.5178 44.9396 89.6103 44.9396C92.7012 44.9396 95.5202 45.5404 98.0637 46.7427C100.606 47.9451 102.776 49.5487 104.572 51.5522C106.367 53.5571 107.762 55.9102 108.76 58.6154C109.756 61.3205 110.256 64.1758 110.256 67.1821C110.256 70.1868 109.756 73.0421 108.76 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M242.805 41.6337C240.611 38.1275 237.494 35.3731 233.455 33.3681C229.416 31.3647 225.351 30.3618 221.262 30.3618C215.974 30.3618 211.138 31.3389 206.75 33.2923C202.36 35.2456 198.597 37.928 195.455 41.3333C192.314 44.7401 189.869 48.6726 188.125 53.1293C186.378 57.589 185.507 62.274 185.507 67.1813C185.507 72.1925 186.378 76.8995 188.125 81.3069C189.868 85.7173 192.313 89.6241 195.455 93.0293C198.597 96.4361 202.361 99.1155 206.75 101.069C211.138 103.022 215.974 103.999 221.262 103.999C225.351 103.999 229.416 102.997 233.455 100.994C237.494 98.9911 240.611 96.2359 242.805 92.7282V102.195H259.112V32.1642H242.805V41.6337ZM241.31 75.7472C240.312 78.4531 238.916 80.8078 237.122 82.8112C235.326 84.8161 233.156 86.4183 230.614 87.6206C228.07 88.823 225.251 89.4238 222.16 89.4238C219.068 89.4238 216.275 88.823 213.782 87.6206C211.289 86.4183 209.145 84.8161 207.35 82.8112C205.554 80.8078 204.182 78.4531 203.236 75.7472C202.286 73.0421 201.814 70.1868 201.814 67.1821C201.814 64.1758 202.286 61.3205 203.236 58.6154C204.182 55.9102 205.554 53.5571 207.35 51.5522C209.145 49.5495 211.288 47.9451 213.782 46.7427C216.275 45.5404 219.068 44.9396 222.16 44.9396C225.251 44.9396 228.07 45.5404 230.614 46.7427C233.156 47.9451 235.326 49.5487 237.122 51.5522C238.917 53.5571 240.312 55.9102 241.31 58.6154C242.306 61.3205 242.806 64.1758 242.806 67.1821C242.805 70.1868 242.305 73.0421 241.31 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M438 -3H421.694V102.197H438V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M139.43 102.197H155.735V48.2834H183.712V32.1665H139.43V102.197Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M324.49 32.1665L303.995 85.794L283.498 32.1665H266.983L293.748 102.197H314.242L341.006 32.1665H324.49Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M376.571 30.3656C356.603 30.3656 340.797 46.8497 340.797 67.1828C340.797 89.6597 356.094 104 378.661 104C391.29 104 399.354 99.1488 409.206 88.5848L398.189 80.0226C398.183 80.031 389.874 90.9895 377.468 90.9895C363.048 90.9895 356.977 79.3111 356.977 73.269H411.075C413.917 50.1328 398.775 30.3656 376.571 30.3656ZM357.02 61.0967C357.145 59.7487 359.023 43.3761 376.442 43.3761C393.861 43.3761 395.978 59.7464 396.099 61.0967H357.02Z"
-                            fill="currentColor"
-                        />
-                    </svg>
+            </div>
+        </section>
 
-                    <!-- 13 -->
-                    <svg
-                        class="relative -mt-[6.6rem] -ml-8 w-[438px] max-w-none [--stroke-color:#1B1B18] lg:ml-0 dark:[--stroke-color:#FF750F]"
-                        viewBox="0 0 440 392"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <g
-                            class="text-[#1B1B18] opacity-100 mix-blend-darken transition-all delay-300 duration-750 dark:text-black dark:mix-blend-normal starting:opacity-0"
-                        >
-                            <mask
-                                id="path-1-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="-0.328613"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="-0.328613"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                />
-                                <path
-                                    d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[26px]"
-                        >
-                            <mask
-                                id="path-2-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="25.3357"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="25.3357"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                />
-                                <path
-                                    d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F8B803] opacity-100 mix-blend-color transition-all delay-400 duration-750 dark:text-[#391800] dark:mix-blend-hard-light starting:opacity-0 motion-safe:starting:-translate-x-[51px]"
-                        >
-                            <mask
-                                id="path-3-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="51"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="51"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                />
-                                <path
-                                    d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-multiply transition-all delay-400 duration-750 dark:text-[#733000] dark:mix-blend-normal starting:opacity-0 motion-safe:starting:-translate-x-[78px]"
-                        >
-                            <mask
-                                id="path-4-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="76.6643"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="76.6643"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                />
-                                <path
-                                    d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-hard-light transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[102px]"
-                        >
-                            <mask
-                                id="path-5-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="102.329"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="102.329"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                />
-                                <path
-                                    d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                        </g>
-                    </svg>
-                    <div
-                        class="absolute inset-0 rounded-t-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-t-none lg:rounded-r-lg dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                    ></div>
+        <!-- TICKER -->
+        <div class="overflow-hidden border-b border-gray-200 bg-white py-4">
+            <div class="flex animate-scroll gap-10 px-8">
+                <div class="flex items-center gap-10 text-xs font-bold text-gray-500 tracking-widest uppercase shrink-0">
+                    <span class="text-blue-600">✦</span><span>AI Chat Assistant</span>
+                    <span class="text-blue-600">✦</span><span>Appointment Booking</span>
+                    <span class="text-blue-600">✦</span><span>Lead Capture</span>
+                    <span class="text-blue-600">✦</span><span>SMS Follow-Up</span>
+                    <span class="text-blue-600">✦</span><span>Missed Call Text-Back</span>
+                    <span class="text-blue-600">✦</span><span>CRM Contact Creation</span>
+                    <span class="text-blue-600">✦</span><span>Review Requests</span>
+                    <span class="text-blue-600">✦</span><span>FAQ Automation</span>
+                    <span class="text-blue-600">✦</span><span>Web Design</span>
+                    <span class="text-blue-600">✦</span><span>Monthly Monitoring</span>
                 </div>
-            </main>
+                <div class="flex items-center gap-10 text-xs font-bold text-gray-500 tracking-widest uppercase shrink-0" aria-hidden="true">
+                    <span class="text-blue-600">✦</span><span>AI Chat Assistant</span>
+                    <span class="text-blue-600">✦</span><span>Appointment Booking</span>
+                    <span class="text-blue-600">✦</span><span>Lead Capture</span>
+                    <span class="text-blue-600">✦</span><span>SMS Follow-Up</span>
+                    <span class="text-blue-600">✦</span><span>Missed Call Text-Back</span>
+                    <span class="text-blue-600">✦</span><span>CRM Contact Creation</span>
+                    <span class="text-blue-600">✦</span><span>Review Requests</span>
+                    <span class="text-blue-600">✦</span><span>FAQ Automation</span>
+                    <span class="text-blue-600">✦</span><span>Web Design</span>
+                    <span class="text-blue-600">✦</span><span>Monthly Monitoring</span>
+                </div>
+            </div>
         </div>
-        <div class="hidden h-14.5 lg:block"></div>
-    </div>
+
+        <!-- VALUE PROPOSITION -->
+        <section class="py-24 px-6 lg:px-12 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <div class="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-5">Sound familiar?</div>
+                        <h2 class="text-3xl lg:text-4xl text-blue-900 leading-tight mb-5 font-bold">
+                            Your website gets visitors.<br />
+                            <span class="text-blue-600">But are you capturing them?</span>
+                        </h2>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-5">
+                            Most small business websites are passive — visitors come, look around, and leave without ever connecting. And when someone calls after hours? It often goes straight to voicemail.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            We set up an AI chat assistant on your website that's ready to answer questions, book appointments, and collect contact info — even at 11pm on a Sunday.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 reveal">
+                        <div class="border border-gray-200 rounded-2xl p-6 hover:border-blue-400 hover:shadow-lg transition-all">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-2">78%</div>
+                            <div class="text-sm text-gray-700 leading-snug">of customers choose the <strong>first business that responds</strong></div>
+                        </div>
+                        <div class="border border-gray-200 rounded-2xl p-6 hover:border-blue-400 hover:shadow-lg transition-all mt-6">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-2">60%</div>
+                            <div class="text-sm text-gray-700 leading-snug">of calls happen <strong>outside business hours</strong> — and go unanswered</div>
+                        </div>
+                        <div class="border border-gray-200 rounded-2xl p-6 hover:border-blue-400 hover:shadow-lg transition-all">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-2">3×</div>
+                            <div class="text-sm text-gray-700 leading-snug">more bookings with <strong>automated follow-up</strong> after first contact</div>
+                        </div>
+                        <div class="border border-gray-200 rounded-2xl p-6 hover:border-blue-400 hover:shadow-lg transition-all mt-6">
+                            <div class="text-3xl font-extrabold text-blue-600 mb-2">24/7</div>
+                            <div class="text-sm text-gray-700 leading-snug">your AI assistant is always on, <strong>ready to help any visitor</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="py-24 px-6 lg:px-12 bg-gray-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-xl mx-auto mb-16 reveal">
+                    <div class="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4">Simple Setup</div>
+                    <h2 class="text-3xl lg:text-4xl text-blue-900 leading-tight mb-4 font-bold">
+                        From sign-up to live chatbot<br />
+                        in just a few steps
+                    </h2>
+                    <p class="text-gray-600 text-lg">We handle the setup — you just show up for a quick call and we take care of the rest.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center reveal">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-200 mb-4 stroke-2">01</div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 border border-blue-300 flex items-center justify-center mx-auto mb-4">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                <rect x="3" y="4" width="18" height="18" rx="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 text-base mb-2">Book a Free Call</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">We'll learn about your business, your most common questions, and what you want the chatbot to handle.</p>
+                    </div>
+                    <div class="text-center reveal">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-200 mb-4">02</div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 border border-blue-300 flex items-center justify-center mx-auto mb-4">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                <path d="M12 20h9" />
+                                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 text-base mb-2">We Build & Train It</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">We set up your AI assistant, train it on your FAQs, connect your calendar, and configure it to match your business.</p>
+                    </div>
+                    <div class="text-center reveal">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-200 mb-4">03</div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 border border-blue-300 flex items-center justify-center mx-auto mb-4">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 text-base mb-2">You Go Live</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">We add the chatbot to your website and run a test together. Once you're happy, it's on — ready to help your customers.</p>
+                    </div>
+                    <div class="text-center reveal">
+                        <div class="text-4xl font-black text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-blue-200 mb-4">04</div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-100 border border-blue-300 flex items-center justify-center mx-auto mb-4">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                                <path d="M16 3.13a4 4 0 010 7.75" />
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-blue-900 text-base mb-2">We Keep It Running</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Every month we check in, monitor performance, and make updates so your assistant stays accurate and useful.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PACKAGES -->
+        <section id="packages" class="py-24 px-6 lg:px-12 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-xl mx-auto mb-16 reveal">
+                    <div class="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4">Simple, Honest Pricing</div>
+                    <h2 class="text-3xl lg:text-4xl text-blue-900 leading-tight mb-4 font-bold">Choose the plan that fits<br />where your business is today</h2>
+                    <p class="text-gray-600 text-lg">Monthly subscriptions. No contracts. Cancel anytime.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-6 items-start">
+                    <!-- Starter Plan -->
+                    <div class="border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all reveal">
+                        <div class="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4">Starter</div>
+                        <div class="flex items-end gap-2 mb-2">
+                            <span class="font-extrabold text-4xl text-blue-900">$297</span>
+                            <span class="text-gray-600 pb-1.5">/month</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-1 font-semibold">Best for:</p>
+                        <p class="text-sm text-gray-700 mb-6 leading-relaxed">Small businesses that want to capture website leads and reduce time spent answering common questions.</p>
+                        <div class="border-t border-gray-200 mb-6"></div>
+                        <ul class="mb-8 space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">AI chat assistant on your website</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Answers common customer questions</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Appointment booking assistance</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Basic FAQ knowledge base setup</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Lead capture from website chats</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">CRM contact creation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Basic reporting dashboard</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Monthly AI monitoring</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full border-2 border-blue-600 text-blue-600 py-3 px-4 rounded-xl font-bold text-center hover:bg-blue-50 transition-colors">Get Started</a>
+                    </div>
+
+                    <!-- Growth Plan (Featured) -->
+                    <div class="border-2 border-blue-600 rounded-2xl p-8 relative reveal" style="background: linear-gradient(135deg, #0D1F4E 0%, #1a3a70 100%);">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white rounded-full px-5 py-1.5 text-xs font-bold shadow-lg">Most Popular</div>
+                        <div class="inline-block bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full mb-4 mt-2">Growth</div>
+                        <div class="flex items-end gap-2 mb-2">
+                            <span class="font-extrabold text-4xl text-white">$597</span>
+                            <span class="text-white/60 pb-1.5">/month</span>
+                        </div>
+                        <p class="text-sm text-white/60 mb-1 font-semibold">Best for:</p>
+                        <p class="text-sm text-white/80 mb-6 leading-relaxed">Businesses that receive frequent calls or texts and want AI to handle lead conversations automatically.</p>
+                        <div class="border-t border-white/20 mb-6"></div>
+                        <ul class="mb-8 space-y-3 text-white/80">
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Everything in Starter</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">AI SMS conversation responses</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Automated lead follow-up sequences</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Missed call text-back automation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Pipeline tracking for leads & appointments</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Review request automation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Expanded reporting dashboard</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-blue-400 font-bold mt-0.5">✓</span>
+                                <span class="text-sm">Monthly monitoring & optimization</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-white text-blue-900 py-3 px-4 rounded-xl font-bold text-center hover:bg-gray-100 transition-colors">Get Started</a>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-all reveal">
+                        <div class="inline-block bg-cyan-100 text-cyan-600 text-xs font-bold px-3 py-1 rounded-full mb-4">Pro</div>
+                        <div class="flex items-end gap-2 mb-2">
+                            <span class="font-extrabold text-4xl text-blue-900">$1,197</span>
+                            <span class="text-gray-600 pb-1.5">/month</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-1 font-semibold">Best for:</p>
+                        <p class="text-sm text-gray-700 mb-6 leading-relaxed">High-volume businesses that want a fully automated system to capture leads, schedule appointments, and follow up with customers.</p>
+                        <div class="border-t border-gray-200 mb-6"></div>
+                        <ul class="mb-8 space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Everything in Growth</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Full AI receptionist conversation handling</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Advanced workflow automations</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Multi-step lead nurturing campaigns</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">AI knowledge base expansion</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Advanced reporting & performance insights</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Priority monitoring & support</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-green-600 font-bold mt-0.5">✓</span>
+                                <span class="text-gray-700 text-sm">Automation optimization & updates</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="block w-full bg-blue-900 text-white py-3 px-4 rounded-xl font-bold text-center hover:bg-blue-800 transition-colors">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-24 px-6 lg:px-12 bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 reveal">
+                    <div class="inline-block bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-4">Get Started</div>
+                    <h2 class="text-3xl lg:text-4xl text-blue-900 leading-tight mb-4 font-bold">Ready to capture more leads?</h2>
+                    <p class="text-gray-600 text-lg">Let's set up your AI assistant and get you answers and bookings, 24/7.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-10">
+                    <!-- Contact Info -->
+                    <div class="space-y-6 reveal">
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-blue-100 border border-blue-300 flex items-center justify-center shrink-0">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                                    />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide mb-0.5">Phone</div>
+                                <a href="tel:+17754427070" class="font-bold text-blue-900 hover:text-blue-600 transition-colors">+1 (775) 442-7070</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-blue-100 border border-blue-300 flex items-center justify-center shrink-0">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide mb-0.5">Email</div>
+                                <a href="mailto:hello@insightwebtechnologies.com" class="font-bold text-blue-900 hover:text-blue-600 transition-colors">hello@insightwebtechnologies.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 rounded-xl bg-blue-100 border border-blue-300 flex items-center justify-center shrink-0">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="1.8">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 font-bold uppercase tracking-wide mb-0.5">Schedule</div>
+                                <a href="#" class="font-bold text-blue-900 hover:text-blue-600 transition-colors">Book a free strategy call →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="border border-gray-200 rounded-2xl p-8 reveal">
+                        <form v-if="!formSubmitted" @submit="handleFormSubmit" class="space-y-5">
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">First Name</label>
+                                    <input type="text" placeholder="John" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" required />
+                                </div>
+                                <div>
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">Last Name</label>
+                                    <input type="text" placeholder="Smith" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" required />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">Business Email</label>
+                                <input type="email" placeholder="john@yourbusiness.com" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" required />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">Phone Number</label>
+                                <input type="tel" placeholder="+1 (775) 000-0000" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">I'm interested in…</label>
+                                <select class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all" required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option>Starter Plan — AI Chat Assistant ($297/mo)</option>
+                                    <option>Growth Plan — AI + SMS Automation ($597/mo)</option>
+                                    <option>Pro Plan — Full Automation System ($1,197/mo)</option>
+                                    <option>Web Design</option>
+                                    <option>Brand Design</option>
+                                    <option>AI Consulting</option>
+                                    <option>Not sure — help me decide</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2 block">Tell us about your business</label>
+                                <textarea rows="4" placeholder="What kind of business do you run? What questions do your customers ask most?" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:border-blue-600 focus:ring-2 focus:ring-blue-100 outline-none transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-xl text-sm font-bold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="22" y1="2" x2="11" y2="13" />
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                                </svg>
+                                Send Message
+                            </button>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div v-else class="text-center py-8">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-green-100 border-2 border-green-300">
+                                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-blue-900 text-xl mb-2">Message Sent!</h3>
+                            <p class="text-gray-600 text-sm">We'll be in touch within one business day. You can also <a href="tel:+17754427070" class="text-blue-600 font-semibold hover:underline">call us</a> for a same-day demo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </PublicLayout>
 </template>
+
+<style scoped>
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll {
+    animation: scroll 28s linear infinite;
+}
+</style>
