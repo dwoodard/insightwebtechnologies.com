@@ -142,7 +142,10 @@ onMounted(() => {
 
             <!-- Desktop CTA -->
             <div class="hidden items-center gap-3 md:flex">
-                <a href="tel:+17754427070" class="btn-outline rounded-lg border-2 border-blue-600 px-5 py-2.5 text-sm font-bold text-blue-600 transition-all hover:bg-blue-50 flex items-center gap-2" >
+                <a
+                    href="tel:+17754427070"
+                    class="btn-outline flex items-center gap-2 rounded-lg border-2 border-blue-600 px-5 py-2.5 text-sm font-bold text-blue-600 transition-all hover:bg-blue-50"
+                >
                     <svg
                         width="13"
                         height="13"
