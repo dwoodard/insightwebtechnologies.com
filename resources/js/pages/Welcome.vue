@@ -1324,7 +1324,7 @@ const handleFormSubmit = (e: Event) => {
                                     <input
                                         type="text"
                                         placeholder="John"
-                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
+                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                                         required
                                     />
                                 </div>
@@ -1336,7 +1336,7 @@ const handleFormSubmit = (e: Event) => {
                                     <input
                                         type="text"
                                         placeholder="Smith"
-                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
+                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                                         required
                                     />
                                 </div>
@@ -1349,7 +1349,7 @@ const handleFormSubmit = (e: Event) => {
                                 <input
                                     type="email"
                                     placeholder="john@yourbusiness.com"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
+                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                                     required
                                 />
                             </div>
@@ -1361,7 +1361,7 @@ const handleFormSubmit = (e: Event) => {
                                 <input
                                     type="tel"
                                     placeholder="+1 (775) 000-0000"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
+                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                                 />
                             </div>
                             <div>
@@ -1370,7 +1370,7 @@ const handleFormSubmit = (e: Event) => {
                                     >I'm interested in…</label
                                 >
                                 <select
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
+                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 text-gray-900 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                                     required
                                 >
                                     <option value="" disabled selected>
@@ -1402,7 +1402,7 @@ const handleFormSubmit = (e: Event) => {
                                 <textarea
                                     rows="4"
                                     placeholder="What kind of business do you run? What questions do your customers ask most?"
-                                    class="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
+                                    class="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-gray-900 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
                                 ></textarea>
                             </div>
                             <button
