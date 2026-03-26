@@ -159,8 +159,8 @@ const handleFormSubmit = (e: Event) => {
                                 class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-teal-900 transition-colors hover:bg-white/90"
                             >
                                 <svg
-                                    width="15"
-                                    height="15"
+                                    width="36"
+                                    height="36"
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
@@ -184,8 +184,8 @@ const handleFormSubmit = (e: Event) => {
                                 class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/40 px-7 py-3.5 text-base font-bold text-white transition-colors hover:bg-white/10"
                             >
                                 <svg
-                                    width="15"
-                                    height="15"
+                                    width="30"
+                                    height="30"
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
