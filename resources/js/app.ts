@@ -2,6 +2,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { initializeTheme } from '@/composables/useAppearance';
 import AppLayout from '@/layouts/AppLayout.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
+import BlankLayout from '@/layouts/BlankLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -19,20 +20,25 @@ const loadExternalScript = (
     document.head.appendChild(script);
 };
 
-// Load Lead Connector widget
-loadExternalScript('https://widgets.leadconnectorhq.com/loader.js', {
-    'data-resources-url':
-        'https://widgets.leadconnectorhq.com/chat-widget/loader.js',
-    'data-widget-id': '69b30fdb4ed9d7630a7f34e8',
-});
+// Load Lead Connector widget (client-side only)
+if (typeof document !== 'undefined') {
+    loadExternalScript('https://widgets.leadconnectorhq.com/loader.js', {
+        'data-resources-url':
+            'https://widgets.leadconnectorhq.com/chat-widget/loader.js',
+        'data-widget-id': '69b30fdb4ed9d7630a7f34e8',
+    });
+}
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     layout: (name) => {
         switch (true) {
             case name === 'Welcome':
-            case name === 'PrivacyPolicy' || name === 'Terms':
+            case name === 'PrivacyPolicy':
+            case name === 'Terms':
                 return null;
+            case name === 'Schedule':
+                return BlankLayout;
             case name.startsWith('auth/'):
                 return AuthLayout;
             case name.startsWith('settings/'):

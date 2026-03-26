@@ -3,6 +3,8 @@ import { Head } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import PublicLayout from '@/layouts/PublicLayout.vue';
 import ComparePlans from './ComparePlans.vue';
+import { schedule } from '@/routes';
+import { toUrl } from '@/lib/utils';
 
 const scrollProgress = ref(0);
 const formSubmitted = ref(false);
@@ -101,7 +103,7 @@ const handleFormSubmit = (e: Event) => {
                             <span
                                 class="h-2 w-2 animate-pulse rounded-full bg-green-500"
                             ></span>
-                            Live demos available
+                            Live demo available,  Try it now!
                         </span>
                         <span class="text-white/30">|</span>
                         <a
@@ -131,7 +133,7 @@ const handleFormSubmit = (e: Event) => {
                         <div
                             class="reveal mb-5 inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-600"
                         >
-                            AI Chat Assistant for Local Businesses
+                            AI Chat Assistant for Businesses
                         </div>
                         <h1
                             class="reveal mb-6 text-4xl leading-[1.1] font-bold text-white lg:text-5xl xl:text-6xl"
@@ -153,7 +155,7 @@ const handleFormSubmit = (e: Event) => {
                             class="reveal mb-10 flex flex-col gap-3 sm:flex-row"
                         >
                             <a
-                                href="#contact"
+                                :href="toUrl(schedule())"
                                 class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-teal-900 transition-colors hover:bg-white/90"
                             >
                                 <svg
@@ -175,7 +177,7 @@ const handleFormSubmit = (e: Event) => {
                                     <line x1="8" y1="2" x2="8" y2="6" />
                                     <line x1="3" y1="10" x2="21" y2="10" />
                                 </svg>
-                                Book a Free Strategy Call
+                                Schedule a Free Consultation.
                             </a>
                             <a
                                 href="tel:+17754427070"
@@ -529,7 +531,7 @@ const handleFormSubmit = (e: Event) => {
                     <h2
                         class="mb-4 text-3xl leading-tight font-bold text-blue-900 lg:text-4xl"
                     >
-                        From sign-up to live chatbot<br />
+                        From sign-up to live chat bot<br />
                         in just a few steps
                     </h2>
                     <p class="text-lg text-gray-600">
@@ -1214,7 +1216,7 @@ const handleFormSubmit = (e: Event) => {
                     class="flex flex-col items-center justify-center gap-4 sm:flex-row"
                 >
                     <a
-                        href="#contact"
+                        :href="toUrl(schedule())"
                         class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-teal-600 transition-colors hover:bg-white/90"
                     >
                         <svg
@@ -1236,7 +1238,7 @@ const handleFormSubmit = (e: Event) => {
                             <line x1="8" y1="2" x2="8" y2="6"></line>
                             <line x1="3" y1="10" x2="21" y2="10"></line>
                         </svg>
-                        Book a Free Strategy Call
+                        Schedule a Free Consultation
                     </a>
                     <a
                         href="tel:+17754427070"
@@ -1375,7 +1377,7 @@ const handleFormSubmit = (e: Event) => {
                                     Schedule
                                 </div>
                                 <a
-                                    href="#"
+                                    href="/schedule"
                                     class="font-bold text-blue-900 transition-colors hover:text-blue-600"
                                     >Book a free strategy call →</a
                                 >

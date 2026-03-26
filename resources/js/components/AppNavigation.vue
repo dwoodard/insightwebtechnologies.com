@@ -2,6 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import { ref, onMounted, computed } from 'vue';
 
+
 type Variant = 'welcome' | 'default';
 
 const props = withDefaults(
@@ -28,18 +29,20 @@ const brandTextClasses = computed(() =>
 const navLinkClasses = computed(() =>
     isWelcome.value ? 'text-white' : 'text-gray-700',
 );
-const hamburgerClasses = computed(() =>
-    isWelcome.value
-        ? 'text-white hover:text-gray-100'
-        : 'text-gray-700 hover:text-gray-900',
-);
+const hamburgerClasses = computed(() => {
+    if (!isWelcome.value) {
+        return 'text-gray-700 hover:text-gray-900';
+    }
+    // For welcome variant, switch color when scrolled
+    if (isScrolled.value) {
+        return 'text-gray-800 hover:text-gray-900';
+    }
+    return 'text-white hover:text-gray-100';
+});
 const mobileMenuClasses = computed(() => ({
-    'border-t border-gray-400 bg-gray-900/97': isWelcome.value,
-    'border-t border-gray-200 bg-white/97': !isWelcome.value,
+    'border-t border-gray-200 bg-white/97': true,
 }));
-const mobileMenuLinkClasses = computed(() =>
-    isWelcome.value ? 'text-gray-200' : 'text-gray-700',
-);
+const mobileMenuLinkClasses = computed(() => 'text-gray-700');
 
 const toggleMobileMenu = () => {
     mobileMenuOpen.value = !mobileMenuOpen.value;
@@ -59,7 +62,7 @@ onMounted(() => {
 <template>
     <nav
         id="navbar"
-        class="fixed top-0 right-0 left-0 z-50 px-6 transition-all duration-300 lg:px-12"
+        class="fixed top-0 right-0 left-0 z-50 px-6 transition-all duration-300 lg:px-12 &>scrolled:bg-white/95 &>scrolled:backdrop-blur-xl &>scrolled:shadow-lg    "
         :class="[navbarClasses, { scrolled: isScrolled || mobileMenuOpen }]"
     >
         <div
@@ -203,7 +206,7 @@ onMounted(() => {
         <!-- Mobile Menu -->
         <div
             v-if="mobileMenuOpen"
-            class="flex flex-col gap-3 px-2 pt-4 pb-5 backdrop-blur-xl md:hidden"
+            class="flex flex-col gap-3 px-2 pt-4 pb-5 backdrop-blur-xl shadow-lg md:hidden"
             :class="mobileMenuClasses"
         >
             <a
@@ -216,28 +219,19 @@ onMounted(() => {
             <a
                 href="#packages"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold hover:text-blue-600"
-                :class="
-                    variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'
-                "
+                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
                 >Packages</a
             >
             <a
                 href="#services"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold hover:text-blue-600"
-                :class="
-                    variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'
-                "
+                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
                 >More Services</a
             >
             <a
                 href="#contact"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold hover:text-blue-600"
-                :class="
-                    variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'
-                "
+                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
                 >Contact</a
             >
             <div class="flex flex-col gap-3 pt-2">
@@ -287,6 +281,15 @@ onMounted(() => {
 
 #navbar.scrolled .nav-link {
     color: #374151;
+}
+
+#navbar #hamburger {
+    transition: all 0.3s;
+}
+
+#navbar.scrolled #hamburger {
+    background-color: rgba(229, 231, 235, 0.7);
+    border-radius: 0.5rem;
 }
 
 #navbar .btn-outline {

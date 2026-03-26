@@ -7,6 +7,7 @@ Route::inertia('/', 'Welcome', [
     'canRegister' => Features::enabled(Features::registration()),
 ])->name('home');
 
+Route::inertia('schedule', 'Schedule')->name('schedule');
 Route::inertia('terms', 'Terms')->name('terms');
 Route::inertia('privacy', 'PrivacyPolicy')->name('privacy');
 
