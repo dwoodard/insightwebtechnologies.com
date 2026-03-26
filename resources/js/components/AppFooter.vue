@@ -175,7 +175,9 @@ import { Link } from '@inertiajs/vue3';
                     © 2025 Insight Web Technologies. All rights reserved.
                 </p>
                 <div class="flex gap-5 text-xs text-gray-500">
-                    <a href="/privacy" class="transition-colors hover:text-blue-600"
+                    <a
+                        href="/privacy"
+                        class="transition-colors hover:text-blue-600"
                         >Privacy Policy</a
                     >
                     <a

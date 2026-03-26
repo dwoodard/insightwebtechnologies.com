@@ -4,11 +4,14 @@ import { ref, onMounted, computed } from 'vue';
 
 type Variant = 'welcome' | 'default';
 
-const props = withDefaults(defineProps<{
-    variant?: Variant;
-}>(), {
-    variant: 'default',
-});
+const props = withDefaults(
+    defineProps<{
+        variant?: Variant;
+    }>(),
+    {
+        variant: 'default',
+    },
+);
 
 const mobileMenuOpen = ref(false);
 const isScrolled = ref(false);
@@ -20,20 +23,22 @@ const navbarClasses = computed(() => ({
     'bg-white border-b border-gray-200': !isWelcome.value,
 }));
 const brandTextClasses = computed(() =>
-    isWelcome.value ? 'text-white' : 'text-gray-900'
+    isWelcome.value ? 'text-white' : 'text-gray-900',
 );
 const navLinkClasses = computed(() =>
-    isWelcome.value ? 'text-white' : 'text-gray-700'
+    isWelcome.value ? 'text-white' : 'text-gray-700',
 );
 const hamburgerClasses = computed(() =>
-    isWelcome.value ? 'text-white hover:text-gray-100' : 'text-gray-700 hover:text-gray-900'
+    isWelcome.value
+        ? 'text-white hover:text-gray-100'
+        : 'text-gray-700 hover:text-gray-900',
 );
 const mobileMenuClasses = computed(() => ({
     'border-t border-gray-400 bg-gray-900/97': isWelcome.value,
     'border-t border-gray-200 bg-white/97': !isWelcome.value,
 }));
 const mobileMenuLinkClasses = computed(() =>
-    isWelcome.value ? 'text-gray-200' : 'text-gray-700'
+    isWelcome.value ? 'text-gray-200' : 'text-gray-700',
 );
 
 const toggleMobileMenu = () => {
@@ -97,7 +102,11 @@ onMounted(() => {
                     <a
                         href="#packages"
                         class="nav-link transition-colors hover:text-blue-500"
-                        :class="variant === 'welcome' ? 'text-white' : 'text-gray-700'"
+                        :class="
+                            variant === 'welcome'
+                                ? 'text-white'
+                                : 'text-gray-700'
+                        "
                         >Packages</a
                     >
                 </li>
@@ -105,7 +114,11 @@ onMounted(() => {
                     <a
                         href="#services"
                         class="nav-link transition-colors hover:text-blue-500"
-                        :class="variant === 'welcome' ? 'text-white' : 'text-gray-700'"
+                        :class="
+                            variant === 'welcome'
+                                ? 'text-white'
+                                : 'text-gray-700'
+                        "
                         >More Services</a
                     >
                 </li>
@@ -113,7 +126,11 @@ onMounted(() => {
                     <a
                         href="#contact"
                         class="nav-link transition-colors hover:text-blue-500"
-                        :class="variant === 'welcome' ? 'text-white' : 'text-gray-700'"
+                        :class="
+                            variant === 'welcome'
+                                ? 'text-white'
+                                : 'text-gray-700'
+                        "
                         >Contact</a
                     >
                 </li>
@@ -200,21 +217,27 @@ onMounted(() => {
                 href="#packages"
                 @click="closeMobileMenu"
                 class="block py-1 font-semibold hover:text-blue-600"
-                :class="variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'"
+                :class="
+                    variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'
+                "
                 >Packages</a
             >
             <a
                 href="#services"
                 @click="closeMobileMenu"
                 class="block py-1 font-semibold hover:text-blue-600"
-                :class="variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'"
+                :class="
+                    variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'
+                "
                 >More Services</a
             >
             <a
                 href="#contact"
                 @click="closeMobileMenu"
                 class="block py-1 font-semibold hover:text-blue-600"
-                :class="variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'"
+                :class="
+                    variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'
+                "
                 >Contact</a
             >
             <div class="flex flex-col gap-3 pt-2">
