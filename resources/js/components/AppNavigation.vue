@@ -164,7 +164,7 @@ onMounted(() => {
                     href="/schedule"
                     class="btn-primary rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-blue-700"
                 >
-                    Book a Free Call
+                    Schedule Free Consultation
                 </a>
             </div>
 
@@ -243,10 +243,10 @@ onMounted(() => {
                     Call for a Demo
                 </a>
                 <a
-                    href="#contact"
+                    href="/schedule"
                     class="btn-primary justify-center rounded-lg bg-blue-600 px-5 py-3 text-sm font-bold text-white"
                 >
-                    Book a Free Call
+                    Schedule Free Consultation
                 </a>
             </div>
         </div>

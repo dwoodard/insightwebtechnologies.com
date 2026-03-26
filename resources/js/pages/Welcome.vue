@@ -570,7 +570,7 @@ const handleFormSubmit = (e: Event) => {
                             </svg>
                         </div>
                         <h3 class="mb-2 text-base font-bold text-blue-900">
-                            Book a Free Call
+                            Schedule Free Consultation
                         </h3>
                         <p class="text-sm leading-relaxed text-gray-600">
                             We'll learn about your business, your most common
@@ -1217,7 +1217,7 @@ const handleFormSubmit = (e: Event) => {
                 >
                     <a
                         :href="toUrl(schedule())"
-                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-teal-600 transition-colors hover:bg-white/90"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-9 py-4 text-base font-bold text-gray-600 transition-colors hover:bg-white/90"
                     >
                         <svg
                             width="15"

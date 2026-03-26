@@ -157,7 +157,7 @@ import { Link } from '@inertiajs/vue3';
                                 target="_blank"
                                 rel="noopener"
                                 class="transition-colors hover:text-slate-900"
-                                >Book a Free Call</a
+                                >Schedule Free Consultation</a
                             >
                         </li>
                     </ul>
