@@ -1003,6 +1003,148 @@ const handleFormSubmit = (e: Event) => {
             </div>
         </section>
 
+        <!-- MORE SERVICES -->
+        <section id="services" class="bg-white px-6 py-24 lg:px-12">
+            <div class="mx-auto max-w-7xl">
+                <div class="reveal mx-auto mb-16 max-w-xl text-center">
+                    <div
+                        class="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-600"
+                    >
+                        Expand Your Capabilities
+                    </div>
+                    <h2
+                        class="mb-4 text-3xl leading-tight font-bold text-blue-900 lg:text-4xl"
+                    >
+                        More Services to<br />
+                        <span class="text-blue-600">Grow Your Business</span>
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        Beyond AI automation, we offer additional services to help you stand out and scale.
+                    </p>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-3">
+                    <!-- Web Design -->
+                    <div class="reveal rounded-2xl border border-gray-200 p-8 transition-all hover:shadow-lg hover:border-blue-400">
+                        <div
+                            class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-300 bg-blue-100"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#2563EB"
+                                stroke-width="1.8"
+                            >
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                <line x1="2" y1="17" x2="22" y2="17" />
+                                <line x1="6" y1="21" x2="18" y2="21" />
+                            </svg>
+                        </div>
+                        <h3 class="mb-3 text-lg font-bold text-blue-900">
+                            Web Design
+                        </h3>
+                        <p class="mb-6 text-sm leading-relaxed text-gray-700">
+                            Get a stunning, conversion-focused website that represents your brand and integrates seamlessly with your AI assistant.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Mobile-responsive design</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>SEO-optimized structure</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Fast loading speeds</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Brand Design -->
+                    <div class="reveal rounded-2xl border border-gray-200 p-8 transition-all hover:shadow-lg hover:border-blue-400">
+                        <div
+                            class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-300 bg-blue-100"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#2563EB"
+                                stroke-width="1.8"
+                            >
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v12M6 12h12" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                        </div>
+                        <h3 class="mb-3 text-lg font-bold text-blue-900">
+                            Brand Design
+                        </h3>
+                        <p class="mb-6 text-sm leading-relaxed text-gray-700">
+                            Build a cohesive brand identity that connects with your customers and differentiates you from the competition.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Logo & visual identity</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Brand guidelines</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Color & typography</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- AI Consulting -->
+                    <div class="reveal rounded-2xl border border-gray-200 p-8 transition-all hover:shadow-lg hover:border-blue-400">
+                        <div
+                            class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-300 bg-blue-100"
+                        >
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#2563EB"
+                                stroke-width="1.8"
+                            >
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+                            </svg>
+                        </div>
+                        <h3 class="mb-3 text-lg font-bold text-blue-900">
+                            AI Consulting
+                        </h3>
+                        <p class="mb-6 text-sm leading-relaxed text-gray-700">
+                            Get expert guidance on how to leverage AI to transform your business operations and customer relationships.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Strategy & roadmap</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Implementation support</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="mt-0.5 font-bold text-blue-600">✓</span>
+                                <span>Team training</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CONTACT SECTION -->
         <section id="contact" class="bg-gray-50 px-6 py-24 lg:px-12">
             <div class="mx-auto max-w-4xl">
