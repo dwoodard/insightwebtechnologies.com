@@ -377,7 +377,7 @@ const handleFormSubmit = (e: Event) => {
         <div class="overflow-hidden border-b border-gray-200 bg-white py-4">
             <div class="animate-scroll flex gap-10 px-8">
                 <div
-                    class="flex shrink-0 items-center gap-10 text-xs font-bold tracking-widest text-gray-500 uppercase"
+                    class="flex shrink-0 items-center gap-10 text-xs font-bold tracking-widest text-gray-900 uppercase"
                 >
                     <span class="text-blue-600">✦</span
                     ><span>AI Chat Assistant</span>
@@ -400,7 +400,7 @@ const handleFormSubmit = (e: Event) => {
                     ><span>Monthly Monitoring</span>
                 </div>
                 <div
-                    class="flex shrink-0 items-center gap-10 text-xs font-bold tracking-widest text-gray-500 uppercase"
+                    class="flex shrink-0 items-center gap-10 text-xs font-bold tracking-widest text-gray-700 uppercase"
                     aria-hidden="true"
                 >
                     <span class="text-blue-600">✦</span
@@ -1227,7 +1227,7 @@ const handleFormSubmit = (e: Event) => {
                             </div>
                             <div>
                                 <div
-                                    class="mb-0.5 text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                    class="mb-0.5 text-xs font-bold tracking-wide text-gray-700 uppercase"
                                 >
                                     Phone
                                 </div>
@@ -1258,7 +1258,7 @@ const handleFormSubmit = (e: Event) => {
                             </div>
                             <div>
                                 <div
-                                    class="mb-0.5 text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                    class="mb-0.5 text-xs font-bold tracking-wide text-gray-700 uppercase"
                                 >
                                     Email
                                 </div>
@@ -1295,7 +1295,7 @@ const handleFormSubmit = (e: Event) => {
                             </div>
                             <div>
                                 <div
-                                    class="mb-0.5 text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                    class="mb-0.5 text-xs font-bold tracking-wide text-gray-700 uppercase"
                                 >
                                     Schedule
                                 </div>
@@ -1318,59 +1318,59 @@ const handleFormSubmit = (e: Event) => {
                             <div class="grid gap-5 sm:grid-cols-2">
                                 <div>
                                     <label
-                                        class="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                        class="mb-2 block text-xs font-bold tracking-wide text-gray-700 uppercase"
                                         >First Name</label
                                     >
                                     <input
                                         type="text"
                                         placeholder="John"
-                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
                                         required
                                     />
                                 </div>
                                 <div>
                                     <label
-                                        class="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                        class="mb-2 block text-xs font-bold tracking-wide text-gray-700 uppercase"
                                         >Last Name</label
                                     >
                                     <input
                                         type="text"
                                         placeholder="Smith"
-                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                                        class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
                                         required
                                     />
                                 </div>
                             </div>
                             <div>
                                 <label
-                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
-                                    >Business Email</label
+                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-700 uppercase"
+                                    >Email</label
                                 >
                                 <input
                                     type="email"
                                     placeholder="john@yourbusiness.com"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
                                     required
                                 />
                             </div>
                             <div>
                                 <label
-                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-700 uppercase"
                                     >Phone Number</label
                                 >
                                 <input
                                     type="tel"
                                     placeholder="+1 (775) 000-0000"
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
                                 />
                             </div>
                             <div>
                                 <label
-                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-700 uppercase"
                                     >I'm interested in…</label
                                 >
                                 <select
-                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                                    class="w-full rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
                                     required
                                 >
                                     <option value="" disabled selected>
@@ -1396,13 +1396,13 @@ const handleFormSubmit = (e: Event) => {
                             </div>
                             <div>
                                 <label
-                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-500 uppercase"
+                                    class="mb-2 block text-xs font-bold tracking-wide text-gray-700 uppercase"
                                     >Tell us about your business</label
                                 >
                                 <textarea
                                     rows="4"
                                     placeholder="What kind of business do you run? What questions do your customers ask most?"
-                                    class="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                                    class="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 transition-all outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 text-gray-900"
                                 ></textarea>
                             </div>
                             <button
