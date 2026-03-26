@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 <template>
     <Head :title="title" />
     <div class="flex min-h-screen flex-col bg-white">
-        <AppNavigation variant="welcome" />
+        <AppNavigation variant="default" />
         <main class="flex-1">
             <slot />
         </main>

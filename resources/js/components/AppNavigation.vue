@@ -1,9 +1,40 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+
+type Variant = 'welcome' | 'default';
+
+const props = withDefaults(defineProps<{
+    variant?: Variant;
+}>(), {
+    variant: 'default',
+});
 
 const mobileMenuOpen = ref(false);
 const isScrolled = ref(false);
+
+// Variant-based styles
+const isWelcome = computed(() => props.variant === 'welcome');
+const navbarClasses = computed(() => ({
+    'bg-transparent': isWelcome.value,
+    'bg-white border-b border-gray-200': !isWelcome.value,
+}));
+const brandTextClasses = computed(() =>
+    isWelcome.value ? 'text-white' : 'text-gray-900'
+);
+const navLinkClasses = computed(() =>
+    isWelcome.value ? 'text-white' : 'text-gray-700'
+);
+const hamburgerClasses = computed(() =>
+    isWelcome.value ? 'text-white hover:text-gray-100' : 'text-gray-700 hover:text-gray-900'
+);
+const mobileMenuClasses = computed(() => ({
+    'border-t border-gray-400 bg-gray-900/97': isWelcome.value,
+    'border-t border-gray-200 bg-white/97': !isWelcome.value,
+}));
+const mobileMenuLinkClasses = computed(() =>
+    isWelcome.value ? 'text-gray-200' : 'text-gray-700'
+);
 
 const toggleMobileMenu = () => {
     mobileMenuOpen.value = !mobileMenuOpen.value;
@@ -23,8 +54,8 @@ onMounted(() => {
 <template>
     <nav
         id="navbar"
-        class="fixed top-0 right-0 left-0 z-50 bg-transparent px-6 transition-all duration-300 lg:px-12"
-        :class="{ scrolled: isScrolled || mobileMenuOpen }"
+        class="fixed top-0 right-0 left-0 z-50 px-6 transition-all duration-300 lg:px-12"
+        :class="[navbarClasses, { scrolled: isScrolled || mobileMenuOpen }]"
     >
         <div
             class="mx-auto flex h-16 max-w-7xl items-center justify-between lg:h-20"
@@ -45,7 +76,8 @@ onMounted(() => {
                     </svg>
                 </div>
                 <span
-                    class="brand-text text-lg font-bold tracking-tight text-white"
+                    class="brand-text text-lg font-bold tracking-tight"
+                    :class="brandTextClasses"
                 >
                     Insight<span class="text-blue-500">Web</span>
                 </span>
@@ -56,28 +88,32 @@ onMounted(() => {
                 <li>
                     <a
                         href="#how-it-works"
-                        class="nav-link text-white transition-colors hover:text-blue-500"
+                        class="nav-link transition-colors hover:text-blue-500"
+                        :class="navLinkClasses"
                         >How It Works</a
                     >
                 </li>
                 <li>
                     <a
                         href="#packages"
-                        class="nav-link text-white transition-colors hover:text-blue-500"
+                        class="nav-link transition-colors hover:text-blue-500"
+                        :class="variant === 'welcome' ? 'text-white' : 'text-gray-700'"
                         >Packages</a
                     >
                 </li>
                 <li>
                     <a
                         href="#services"
-                        class="nav-link text-white transition-colors hover:text-blue-500"
+                        class="nav-link transition-colors hover:text-blue-500"
+                        :class="variant === 'welcome' ? 'text-white' : 'text-gray-700'"
                         >More Services</a
                     >
                 </li>
                 <li>
                     <a
                         href="#contact"
-                        class="nav-link text-white transition-colors hover:text-blue-500"
+                        class="nav-link transition-colors hover:text-blue-500"
+                        :class="variant === 'welcome' ? 'text-white' : 'text-gray-700'"
                         >Contact</a
                     >
                 </li>
@@ -115,7 +151,8 @@ onMounted(() => {
             <button
                 id="hamburger"
                 @click="toggleMobileMenu"
-                class="p-2 text-gray-700 hover:text-gray-900 md:hidden"
+                class="p-2 md:hidden"
+                :class="hamburgerClasses"
                 aria-label="Toggle menu"
             >
                 <svg
@@ -149,30 +186,35 @@ onMounted(() => {
         <!-- Mobile Menu -->
         <div
             v-if="mobileMenuOpen"
-            class="flex flex-col gap-3 border-t border-gray-200 bg-white/97 px-2 pt-4 pb-5 backdrop-blur-xl md:hidden"
+            class="flex flex-col gap-3 px-2 pt-4 pb-5 backdrop-blur-xl md:hidden"
+            :class="mobileMenuClasses"
         >
             <a
                 href="#how-it-works"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
+                class="block py-1 font-semibold hover:text-blue-600"
+                :class="mobileMenuLinkClasses"
                 >How It Works</a
             >
             <a
                 href="#packages"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
+                class="block py-1 font-semibold hover:text-blue-600"
+                :class="variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'"
                 >Packages</a
             >
             <a
                 href="#services"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
+                class="block py-1 font-semibold hover:text-blue-600"
+                :class="variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'"
                 >More Services</a
             >
             <a
                 href="#contact"
                 @click="closeMobileMenu"
-                class="block py-1 font-semibold text-gray-700 hover:text-blue-600"
+                class="block py-1 font-semibold hover:text-blue-600"
+                :class="variant === 'welcome' ? 'text-gray-200' : 'text-gray-700'"
                 >Contact</a
             >
             <div class="flex flex-col gap-3 pt-2">
@@ -209,7 +251,6 @@ onMounted(() => {
 }
 
 #navbar .brand-text {
-    color: white;
     transition: color 0.3s;
 }
 
