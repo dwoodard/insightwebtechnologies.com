@@ -786,7 +786,7 @@ const handleFormSubmit = (e: Event) => {
                             </li>
                         </ul>
                         <a
-                            href="#contact"
+                            href="https://buy.stripe.com/fZu14g0kVfr4dbHdDkaEE00"
                             class="block w-full rounded-xl border-2 border-blue-600 px-4 py-3 text-center font-bold text-blue-600 transition-colors hover:bg-blue-50"
                             >Get Started</a
                         >
@@ -895,7 +895,7 @@ const handleFormSubmit = (e: Event) => {
                             </li>
                         </ul>
                         <a
-                            href="#contact"
+                            href="https://buy.stripe.com/3cIfZa1oZgv89Zv56OaEE01"
                             class="block w-full rounded-xl bg-white px-4 py-3 text-center font-bold text-blue-900 transition-colors hover:bg-gray-100"
                             >Get Started</a
                         >
@@ -994,7 +994,7 @@ const handleFormSubmit = (e: Event) => {
                             </li>
                         </ul>
                         <a
-                            href="#contact"
+                            href="https://buy.stripe.com/dRm14g4Bb4Mq9Zv2YGaEE02"
                             class="block w-full rounded-xl bg-blue-900 px-4 py-3 text-center font-bold text-white transition-colors hover:bg-blue-800"
                             >Get Started</a
                         >
